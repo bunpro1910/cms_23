@@ -28,6 +28,7 @@ import Addrole from './components/Staff/Addrole'
 import Manageruser from './components/Admin/Manageuser'
 import { ToastContainer } from 'react-toastify'
 import CreateAccount from './components/Admin/CreateAccount'
+import Profile from './components/Staff/Profile'
 function App() {
   let getuser = () => axios.get("/authentication").then((res) => res.data)
   const socketRef = useRef();
@@ -56,6 +57,7 @@ function App() {
 
             {data.user != "not found" ?
               <>
+                   <Route path='profile' element={<Profile />} />
                 <Route path='addidea' element={<Addidea />} />
                 <Route path='topic' element={<Topic />} />
                 <Route path='idea/:id/:page?' element={<Idea />} />
@@ -63,7 +65,9 @@ function App() {
           </Route>
           {data.user != "not found" ? data.user.isAdmin || data.user.isQA ?
             <>
+
               <Route path="/manager" element={<Navbar />}>
+         
                 <Route index element={<Index />} />
                 <Route path='addcate' element={<Addcate />} />
                 <Route path='addtopic' element={<AddTopic />} />

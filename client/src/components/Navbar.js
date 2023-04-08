@@ -9,7 +9,7 @@ import { Link, Outlet, useNavigate } from 'react-router-dom'
 import { io } from 'socket.io-client'
 import axios from 'axios'
 import Footer from './Footer';
-
+import {toast} from 'react-toastify'
 
 import { useQuery } from 'react-query'
 
@@ -103,10 +103,14 @@ function Navbar() {
                   <li className="navbar-item">
                     {localStorage.setItem('user', JSON.stringify(data.user))}
 
-                    <Link to='/login' className='Link'>{data.user.fullname} </Link></li>
-                  <li className="navbar-item"><button onClick={(e) => {
-                    axios.get('/logout')
-
+                    <Link to='/profile' className='Link'>{data.user.fullname} </Link></li>
+                  <li className="navbar-item"><button onClick={ async(e) => {
+                    let result = await axios.get('/logout')
+                    if(result.data.isSuccess) {
+                      toast.success(`Logout Successfully`)
+                    }else{
+                      toast.error(`Logout failed`)
+                    }
                   }} className='Link btn-logout'>Logout</button></li></>
                   : <li className="navbar-item"><Link to='login' className='Link'>Login </Link></li>}
               </ul>
