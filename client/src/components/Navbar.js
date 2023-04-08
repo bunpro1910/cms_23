@@ -90,12 +90,12 @@ function Navbar() {
               className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${navbar ? "block" : "hidden"
                 }`}
             >
-              <ul className="items-center mt-4 justify-center space-y-8 md:flex md:space-x-6 md:space-y-0 ">
+              <ul className="w-fit text-left items-center mt-4 justify-center space-y-3 md:flex md:space-x-6 md:space-y-0 ml-auto mr-auto">
 
 
                 <li className="navbar-item"><Link to='/home' className='Link'>Home <FaHome className="icons" /></Link></li>
 
-                {data.user?.isAdmin || data.user?.isQA ? <li className="navbar-item"><Link to='/manager' className='Link'> Dashboard <MdOutlineAdminPanelSettings className="icons" /></Link></li> : ""}
+                {data.user?.isAdmin || data.user?.isQA ? <li className="navbar-item"><Link to='/manager' className='Link'> Dashboard <MdOutlineAdminPanelSettings  className="icons" /></Link></li> : ""}
 
                 {data.user != 'not found' ? <>
                   <li className="navbar-item"><Link to='/topic' className='Link'>Topic <FaUpload className="icons" /></Link></li>

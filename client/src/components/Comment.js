@@ -102,7 +102,7 @@ function View(props) {
 
             tabIndex={-1}
           >
-            <div className=''>
+            <div className='space-y-4 '>
               {data.comment.map((item) => {
                 return (
                   <>
@@ -110,7 +110,8 @@ function View(props) {
                       <div className='info'>
                         <p>{item.text}</p>
                       </div>
-                      <p className='date'>{new Date(item.datetime).toDateString()+", "+new Date(item.datetime).getHours()+":"+new Date(item.datetime).getMinutes()}</p>
+
+                      <p className='date !text-xs'>{new Date(item.datetime).toDateString()+", "+new Date(item.datetime).getHours()+":"+new Date(item.datetime).getMinutes()}</p>
                     </div>
                     <hr />
                   </>
@@ -125,10 +126,11 @@ function View(props) {
         <DialogActions>
 
         {new Date()<=new Date(props.finalclosuredate) ? <form onSubmit={handle_submit} className="form-comment">
-              <div className='new-comment'>
-                <input type='text' placeholder='input comment' className='input-comment' onChange={(e) => { setcomment(e.target.value) }} value={comment}></input>
-                <button className='btn-send'><AiOutlineSend /></button>
+              <div className='new-comment flex flex-row justify-center items-center  '>
+              <input type='text' placeholder='input comment ' className='input-comment' onChange={(e) => { setcomment(e.target.value) }} value={comment}></input>
+              <button className='text-4xl ml-2'><AiOutlineSend className='' /></button>
               </div>
+
             </form> : ""}
           <Button onClick={handleClosecomment}>Cancel</Button>
         </DialogActions>

@@ -13,14 +13,14 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import {toast} from 'react-toastify'
+import { toast } from 'react-toastify'
 function Idea() {
   let params = useParams()
   let [showview, setshowview] = useState(false)
   let [showdetail, setshowdetail] = useState(false)
   let [showcomment, setshowcomment] = useState(false)
   let [ideadetail, setideadetail] = useState('')
- 
+
   let [idd, setideaid] = useState('')
   const id = params.id
   console.log(params.page)
@@ -58,7 +58,7 @@ function Idea() {
 
   };
   useEffect(() => {
-    
+
     socketRef.current = io.connect(`http://localhost:3001`)
     socketRef.current.on('newtopic', (args) => {
       refetchidea()
@@ -73,14 +73,14 @@ function Idea() {
     })
     socketRef.current.on('reloadidea', (args) => {
       let user = JSON.parse(localStorage.getItem('user'))
-      console.log(args,user)
-      if( args.user.find(user.id)){
+      console.log(args, user)
+      if (args.user.find(user.id)) {
         toast.success("your staff was submited")
       }
       refetchidea()
     })
 
-    
+
 
   }, [showcomment, showview])
   if (isloadingidea) { return <>... loading</> }
@@ -120,7 +120,7 @@ function Idea() {
           <Button onClick={handleClose}>Cancel</Button>
         </DialogActions>
       </Dialog>
-      <Comment id={idd} showcomment={showcomment} finalclosuredate = {topic.topic[0].finalclosuredate} setshowcomment={setshowcomment} />
+      <Comment id={idd} showcomment={showcomment} finalclosuredate={topic.topic[0].finalclosuredate} setshowcomment={setshowcomment} />
       <Dialog
         open={showdetail}
         onClose={closeshowdetail}
@@ -135,13 +135,15 @@ function Idea() {
 
             tabIndex={-1}
           >
-            <p>username : {ideadetail.fullname}</p>
-            <p>brief : {ideadetail.brief}</p>
-            <p>Filepath : {ideadetail.filepath}</p>
-            {user.isQA ||user.isAdmin?  <a target="_blank" href={'http://localBACKEND:3001'+ideadetail.filepath}>download</a>:""}
-            <p>Content : {ideadetail.text}</p>
-            <p>category : {ideadetail.categoryname}</p>
-            <p className='date'>Date {ideadetail.datetime}</p>
+            <div className='space-y-4'>
+              <p >username : {ideadetail.fullname}</p>
+              <p>brief : {ideadetail.brief}</p>
+              <p>Filepath : {ideadetail.filepath}</p>
+              {user.isQA || user.isAdmin ? <a target="_blank" href={'http://localhost:3001' + ideadetail.filepath}>download</a> : ""}
+              <p>Content : {ideadetail.text}</p>
+              <p>category : {ideadetail.categoryname}</p>
+              <p className='date !text-xs'>Date {ideadetail.datetime}</p>
+            </div>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
@@ -150,9 +152,9 @@ function Idea() {
       </Dialog>
 
       <div className='idea-page'>
-        {new Date() <= new Date(topic.topic[0].clousuredate)  ? <Link to='/addidea' className='create-new' state={{ topicid: id }}>add new idea</Link> : ""}
+        {new Date() <= new Date(topic.topic[0].clousuredate) ? <Link to='/addidea' className='create-new' state={{ topicid: id }}>add new idea</Link> : ""}
         {idea.idea.map((idea, i) => {
-          if ((params.page?params.page:1) == idea.page) {
+          if ((params.page ? params.page : 1) == idea.page) {
             return (
               <>
                 <div className='idea'>
@@ -165,8 +167,8 @@ function Idea() {
                   <div className='bottom-wrap'>
                     <div className='bottom row'>
                       <p className='flex flex-wrap mb-3'>
-                        <button className={`flex w-24 hover:bg-blue-400 justify-center p-2 rounded-md mr-3 border-2 border-solid border-blue-300  ${react.react.filter((e) => e.id == idea.id && e.islike == true)[0] ? "islike" : ""}`} onClick={(e) => { axios.get(`/addreact?ideaid=${idea.id}&react=1`) }} >{react.react?.filter((e) => e.id == idea.id)[0] ? react.react?.filter((e) => e.id == idea.id)[0]?.totallike : 0} <AiOutlineLike style={{marginRight:4+"px", marginLeft:4+"px"}}  />  Like</button>
-                        <button className={`flex w-24 hover:bg-red-400  justify-center p-2 rounded-md mr-3 border-2 border-solid border-red-300 ${react.react.filter((e) => e.id == idea.id && e.isdislike == true)[0] ? "isdislike" : ""}`} onClick={(e) => { axios.get(`/addreact?ideaid=${idea.id}&react=-1`) }} >{react.react?.filter((e) => e.id == idea.id)[0] ? react.react?.filter((e) => e.id == idea.id)[0]?.totaldislike : 0} <AiOutlineDislike style={{marginRight:4+"px", marginLeft:4+"px"}} />  Dislike</button>
+                        <button className={`flex w-24 hover:bg-blue-400 justify-center p-2 rounded-md mr-3 border-2 border-solid border-blue-300  ${react.react.filter((e) => e.id == idea.id && e.islike == true)[0] ? "islike" : ""}`} onClick={(e) => { axios.get(`/addreact?ideaid=${idea.id}&react=1`) }} >{react.react?.filter((e) => e.id == idea.id)[0] ? react.react?.filter((e) => e.id == idea.id)[0]?.totallike : 0} <AiOutlineLike style={{ marginRight: 4 + "px", marginLeft: 4 + "px", marginTop: 4 + "px" }} />  Like</button>
+                        <button className={`flex w-24 hover:bg-red-400  justify-center p-2 rounded-md mr-3 border-2 border-solid border-red-300 ${react.react.filter((e) => e.id == idea.id && e.isdislike == true)[0] ? "isdislike" : ""}`} onClick={(e) => { axios.get(`/addreact?ideaid=${idea.id}&react=-1`) }} >{react.react?.filter((e) => e.id == idea.id)[0] ? react.react?.filter((e) => e.id == idea.id)[0]?.totaldislike : 0} <AiOutlineDislike style={{ marginRight: 4 + "px", marginLeft: 4 + "px", marginTop: 4 + "px" }} />  Dislike</button>
                       </p>
                       <div className='options-wrap row'>
                         <button className='comment hover:bg-green-200' onClick={openshowdetail(idea)} >Detail</button>
@@ -174,11 +176,11 @@ function Idea() {
                         <button onClick={handleClickOpen(idea.id)} className='comment hover:bg-green-200'>{count.totalview?.filter((e) => e.id == idea.id)[0] ? count.totalview.filter((e) => e.id == idea.id)[0]?.count : 0} View</button>
                       </div>
 
+                    </div>
+
                   </div>
-                
-                </div>
-                    
-                 
+
+
                 </div>
 
               </>
@@ -189,8 +191,8 @@ function Idea() {
         })}
         <div className="page-wrap">
 
-          {[...Array(idea.idea[idea.idea.length-1].page)].map((x,i)=>{
-            return <Link to={`/idea/${id}/${i+1}`} onClick={(e)=>{window.scroll({top:0,left:0, behavior: 'smooth'})}}> {i+1}</Link>
+          {[...Array(idea.idea[idea.idea.length - 1].page)].map((x, i) => {
+            return <Link to={`/idea/${id}/${i + 1}`} onClick={(e) => { window.scroll({ top: 0, left: 0, behavior: 'smooth' }) }}> {i + 1}</Link>
           })}
         </div>
       </div>

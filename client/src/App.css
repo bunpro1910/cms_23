@@ -67,7 +67,7 @@
 .icons {
   display: inline-block;
   font-size: 20px;
-
+  margin-bottom: 4px;
 }
 
 .second {
@@ -434,31 +434,36 @@ input {
 .fotter-list {
   display: inline-block;
   text-align: left;
-  width: 33.333%;
+
 
 }
 
 .fotter-list ul li {
   list-style: none;
-  margin: 5px 10px 5px 40px;
+
   border-right: 1px solid rgba(0, 0, 0, 0.3);
-  text-align: center;
+  height: 30px;
   overflow: hidden;
 }
-
+/* .fotter-list ul li:hover {
+  color: brown;
+  cursor: pointer;
+  
+} */
 .footer-content {
   width: 100%;
 
-  background: linear-gradient(360deg, #7b8d61 10%, #1d7d8e 360%);
 }
-
+.footer-content .footer-name {
+  
+}
 .footer-name {
   font-size: 30px;
   text-align: center;
-  border-bottom: 2px solid #cbe5a9;
+  border-bottom: 1px solid black;
   font-weight: 500;
-
-  margin: 10px 0px 10px 30px;
+  margin: 10px 0 10px;
+  height: 50px;
 }
 
 
