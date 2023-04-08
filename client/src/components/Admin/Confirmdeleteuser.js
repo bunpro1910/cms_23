@@ -16,7 +16,7 @@ import { Store } from 'react-notifications-component'
 import { toast } from 'react-toastify'
 function View( props ) {
     const handledelete = async(e)=>{
-        let result = await axios.post(`/admin/deleteuser',{id:props.account.id}`)
+        let result = await axios.post(`/api/admin/deleteuser'`,{id:props.account.id})
         if(result.data.isSuccess){
           props.setShowdelete(false)
           toast.success("delete sucessfully")

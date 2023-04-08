@@ -26,7 +26,7 @@ function Login(props) {
   )
   async function handlesubmit(e) {
     e.preventDefault()
-    let { data } = await axios.post(`/staff/adddepartment`, {department,update:location.state?.update,oldid:location.state?.department.id});
+    let { data } = await axios.post(`/api/staff/adddepartment`, {department,update:location.state?.update,oldid:location.state?.department.id});
  
     if (data.isSuccess) {
       setdepartment({

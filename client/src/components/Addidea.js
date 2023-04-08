@@ -36,7 +36,7 @@ function Login({ state }) {
       form.append('topicid', location.state.topicid)
       form.append('title', addidea.title)
       form.append('brief', addidea.brief)
-      let result = await axios.post(`/addidea`, form)
+      let result = await axios.post(`/api/addidea`, form)
       if (result.data.isSuccess) {
         toast.success("you add idea successfully")
         navigate(`/idea/${location.state.topicid}`)

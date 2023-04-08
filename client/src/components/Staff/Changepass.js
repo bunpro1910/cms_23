@@ -21,7 +21,7 @@ function Home({ user, showchange, setshowchange }) {
     const handleSubmit= async(e)=>{
         e.preventDefault()
         console.log(updateform)
-        let result = await axios.post('/staff/changepass',updateform)
+        let result = await axios.post('/api/staff/changepass',updateform)
         if(result.data.isSuccess) {
             toast.success(`${result.data.message}`)
         }else{

@@ -28,7 +28,7 @@ function Login(props) {
   )
   async function handlesubmit(e) {
     e.preventDefault()
-    let { data } = await axios.post(`/staff/addtopic`, { topic, update: location.state?.update, oldid: location.state?.topic.id });
+    let { data } = await axios.post(`/api/staff/addtopic`, { topic, update: location.state?.update, oldid: location.state?.topic.id });
     console.log(data)
     console.log(data)
     if (data.isSuccess ==true) {

@@ -25,7 +25,7 @@ function Login(props) {
   )
   async function handlesubmit(e) {
     e.preventDefault()
-    let { data } = await axios.post(`/staff/addcategory`, {category,update:location.state?.update,oldid:location.state?.category.id});
+    let { data } = await axios.post(`/api/staff/addcategory`, {category,update:location.state?.update,oldid:location.state?.category.id});
     console.log(data)
     if (data.isSuccess) {
       setcategory({

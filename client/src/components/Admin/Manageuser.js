@@ -17,7 +17,7 @@ function Login() {
     const [account, setAccount] = useState('')
     const socketRef = useRef()
     const navigate = useNavigate()
-    let getUsers = () => axios.get(`/admin/user`).then((res) => res.data)
+    let getUsers = () => axios.get(`/api/admin/user`).then((res) => res.data)
     const { isLoading, error, data, isFetching, refetch } = useQuery(['user'], getUsers)
 
     const handleDelete = (acc) => (e) => {
@@ -40,7 +40,7 @@ function Login() {
     }
 
     useEffect(() => {
-        socketRef.current = io.connect(`http://localhost:3001`)
+        socketRef.current = io.connect(`/`)
 
         socketRef.current.on('reloaduser', (args) => {
             refetch()

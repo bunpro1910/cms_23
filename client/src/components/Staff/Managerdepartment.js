@@ -18,7 +18,7 @@ function Login() {
     const socketRef = useRef()
 
     const navigate = useNavigate()
-    let getuser = () => axios.get(`/department`).then((res) => res.data)
+    let getuser = () => axios.get(`/api/department`).then((res) => res.data)
     const { isLoading, error, data, isFetching, refetch } = useQuery(['department'], getuser)
     const handledelete = (depart) => (e) => {
         setdepartment(depart)
@@ -33,7 +33,7 @@ function Login() {
         navigate('../adddepartment', { state: { update: 1, department: depart } })
     }
     useEffect(() => {
-        socketRef.current = io.connect(`http://localhost:3001`)
+        socketRef.current = io.connect(`/`)
         socketRef.current.on('reloadcate', (args) => {
             refetch()
         })

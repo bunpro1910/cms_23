@@ -9,7 +9,7 @@ import Updateprofile from'./Updateprofile'
 import Changepass from './Changepass'
 function Home() {
 
-    let getuser = () => axios.get(`/authentication`).then((res) => res.data)
+    let getuser = () => axios.get(`/api/authentication`).then((res) => res.data)
     const [showupdate,setshowupdate] = useState(false)
     const [showchange,setshowchange] = useState(false)
     const { isLoading, error, data, isFetching, refetch } = useQuery('authentication', getuser)
@@ -18,7 +18,7 @@ function Home() {
 
     }, [])
     if(isLoading) return <>...loading</>
-    console.log(data)
+
   return (
     <>
     {showchange?<Changepass user={data.user} showchange={showchange} setshowchange={setshowchange} />:""}

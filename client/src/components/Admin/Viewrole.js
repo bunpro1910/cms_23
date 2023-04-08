@@ -17,10 +17,10 @@ import 'react-toastify/dist/ReactToastify.css';
 function View(props) {
 
     let [roleid,setroleid]= useState('')
-    let getUsers = () => axios.get(`/staff/roledetail?id=${props.account.id}`).then((res) => res.data)
+    let getUsers = () => axios.get(`/api/staff/roledetail?id=${props.account.id}`).then((res) => res.data)
     const [user, Setuser] = useState(JSON.parse(localStorage.getItem('user')))
     const { isLoading, error, data, isFetching, refetch } = useQuery(['roledetail'], getUsers, { enabled: props.showviewrole })
-    let getRole = () => axios.get(`/staff/role`).then((res) => res.data)
+    let getRole = () => axios.get(`/api/staff/role`).then((res) => res.data)
     const socketRef = useRef()
     const { isLoading: isloadingrole, error: errrole, data: role, isFetching: isfetchingrole, refetch: refetthrole } = useQuery(['role'], getRole)
     const handleAddRolebyuser=(roleid)=> async (e)=>{
@@ -29,7 +29,7 @@ function View(props) {
     }
     const handleDeleteRolebyuser=(roleid)=> async (e)=>{
             
-        let result = await axios.post(`/admin/removerolebyuser`,{id:roleid,userid:props.account.id})
+        let result = await axios.post(`/api/admin/removerolebyuser`,{id:roleid,userid:props.account.id})
 
         if(result.data.isSuccess){
   
@@ -46,7 +46,7 @@ function View(props) {
     const handleSubmit = async (e) =>{
         e.preventDefault()
         
-        let result = await axios.post(`/admin/addrolebyuser`,{id:roleid,userid:props.account.id})
+        let result = await axios.post(`/api/admin/addrolebyuser`,{id:roleid,userid:props.account.id})
         
         if(result.data.isSuccess){
             console.log(1)
@@ -56,7 +56,7 @@ function View(props) {
         }
     }
     useEffect(() => {
-        socketRef.current = io.connect(`http://localhost:3001`)
+        socketRef.current = io.connect(`/`)
         socketRef.current.on('reloaduserrole', (args) => {
           refetch()
         })

@@ -15,14 +15,14 @@ import { useQuery } from 'react-query'
 
 function Navbar() {
 
-  let getuser = () => axios.get("/authentication").then((res) => res.data)
+  let getuser = () => axios.get("/api/authentication").then((res) => res.data)
   const socketRef = useRef();
   const [navbar, setNavbar] = useState(true)
 
   const { isLoading, error, data, isFetching, refetch } = useQuery('authentication', getuser, { staleTime: Infinity, cacheTime: Infinity })
   useEffect(() => {
 
-    socketRef.current = io.connect('http://localhost:3001')
+    socketRef.current = io.connect('/')
     socketRef.current.on('authentication', (args) => {
       refetch()
 
@@ -105,7 +105,7 @@ function Navbar() {
 
                     <Link to='/profile' className='Link'>{data.user.fullname} </Link></li>
                   <li className="navbar-item"><button onClick={ async(e) => {
-                    let result = await axios.get('/logout')
+                    let result = await axios.get('/api/logout')
                     if(result.data.isSuccess) {
                       toast.success(`Logout Successfully`)
                     }else{

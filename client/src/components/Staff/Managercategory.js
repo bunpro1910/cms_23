@@ -15,7 +15,7 @@ function Login() {
     const [category, setcategory] = useState('')
     const socketRef = useRef()
     const navigate = useNavigate()
-    let getuser = () => axios.get(`/category`).then((res) => res.data)
+    let getuser = () => axios.get(`/api/category`).then((res) => res.data)
     const { isLoading, error, data, isFetching, refetch } = useQuery(['category'], getuser)
     const handledelete = (topic) => (e) => {
         setcategory(topic)
@@ -30,7 +30,7 @@ function Login() {
         navigate('../addcate', { state: { update: 1, category: cate } })
     }
     useEffect(() => {
-        socketRef.current = io.connect(`http://localhost:3001`)
+        socketRef.current = io.connect(`/`)
         socketRef.current.on('reloadcate', (args) => {
             refetch()
         })

@@ -24,10 +24,10 @@ function Idea() {
   let [idd, setideaid] = useState('')
   const id = params.id
   console.log(params.page)
-  let getidea = () => axios.get(`/idea?id=${id}`).then((res) => res.data)
-  let getcount = () => axios.get(`/count?id=${id}`).then((res) => res.data)
-  let getreact = () => axios.get(`/countreact?id=${id}`).then((res) => res.data)
-  let gettopic = () => axios.get(`/topic?id=${id}`).then((res) => res.data)
+  let getidea = () => axios.get(`/api/idea?id=${id}`).then((res) => res.data)
+  let getcount = () => axios.get(`/api/count?id=${id}`).then((res) => res.data)
+  let getreact = () => axios.get(`/api/countreact?id=${id}`).then((res) => res.data)
+  let gettopic = () => axios.get(`/api/topic?id=${id}`).then((res) => res.data)
   let user = JSON.parse(localStorage.getItem('user'))
   const socketRef = useRef();
   const { isLoading: isloadingtopic, error: errtopic, data: topic, isFetchingtopic, refetch: refetchtopic } = useQuery(['topic', params.id], gettopic, { staleTime: Infinity, cacheTime: Infinity })
@@ -41,7 +41,7 @@ function Idea() {
   };
   const openshowdetail = (ideadetail) => async (e) => {
     setideadetail(ideadetail)
-    let result = await axios.get('/addview', { params: { id: ideadetail.id } })
+    let result = await axios.get('/api/addview', { params: { id: ideadetail.id } })
     console.log(result)
     setshowdetail(true)
   }
@@ -59,7 +59,7 @@ function Idea() {
   };
   useEffect(() => {
 
-    socketRef.current = io.connect(`http://localhost:3001`)
+    socketRef.current = io.connect(`/`)
     socketRef.current.on('newtopic', (args) => {
       refetchidea()
     })
@@ -139,7 +139,6 @@ function Idea() {
               <p >username : {ideadetail.fullname}</p>
               <p>brief : {ideadetail.brief}</p>
               <p>Filepath : {ideadetail.filepath}</p>
-              {user.isQA || user.isAdmin ? <a target="_blank" href={'http://localhost:3001' + ideadetail.filepath}>download</a> : ""}
               <p>Content : {ideadetail.text}</p>
               <p>category : {ideadetail.categoryname}</p>
               <p className='date !text-xs'>Date {ideadetail.datetime}</p>

@@ -10,7 +10,7 @@ import Comment from'./Comment'
 
 function React({topicid}) {
 
-  let getreact =()=> axios.get(`/react?id=${id}`).then((res) => res.data)
+  let getreact =()=> axios.get(`/api/react?id=${id}`).then((res) => res.data)
   const socketRef = useRef();
  
  
@@ -18,7 +18,7 @@ function React({topicid}) {
 
   useEffect( ()=>{
     
-    socketRef.current =io.connect(`http://localhost:3001`)
+    socketRef.current =io.connect(`/`)
     socketRef.current.on('newtopic',(args)=>{
     
         refetchreact()

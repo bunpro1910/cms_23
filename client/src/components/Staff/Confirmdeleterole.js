@@ -15,7 +15,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { Store } from 'react-notifications-component'
 function View( props ) {
     const handledelete = async(e)=>{
-        let result = await axios.post(`/staff/deleterole`,{id:props.role.id})
+        let result = await axios.post(`/api/staff/deleterole`,{id:props.role.id})
         if(result.data.isSuccess){
           Store.addNotification({
             title: "Delete Success",

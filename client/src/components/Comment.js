@@ -16,7 +16,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 function View(props) {
   console.log(props)
   let [comment, setcomment] = useState('')
-  let getuser = () => axios.get(`/comment?id=${props.id}`).then((res) => res.data)
+  let getuser = () => axios.get(`/api/comment?id=${props.id}`).then((res) => res.data)
   const socketRef = useRef();
   const handleClosecomment = (e) => {
     props.setshowcomment(false);
@@ -28,7 +28,7 @@ function View(props) {
     setcomment('')
   }
   useEffect(() => {
-    socketRef.current = io.connect(`http://localhost:3001`)
+    socketRef.current = io.connect(`/`)
     socketRef.current.on('newcomment', (args) => {
       refetch()
     })

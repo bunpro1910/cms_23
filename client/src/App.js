@@ -30,12 +30,12 @@ import { ToastContainer } from 'react-toastify'
 import CreateAccount from './components/Admin/CreateAccount'
 import Profile from './components/Staff/Profile'
 function App() {
-  let getuser = () => axios.get("/authentication").then((res) => res.data)
+  let getuser = () => axios.get("/api/authentication").then((res) => res.data)
   const socketRef = useRef();
   const { isLoading, error, data, isFetching, refetch } = useQuery(`authentication`, getuser, { staleTime: Infinity, cacheTime: Infinity })
   useEffect(() => {
 
-    socketRef.current = io.connect(`http://localhost:3001`)
+    socketRef.current = io.connect(`/`)
     socketRef.current.on('authentication', (args) => {
       refetch()
     })

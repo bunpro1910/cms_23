@@ -10,11 +10,11 @@ import { ReactNotifications, Store } from 'react-notifications-component'
 import 'react-notifications-component/dist/theme.css'
 function Login() {
 
-    let getuser = () => axios.get(`/topic`).then((res) => res.data)
+    let getuser = () => axios.get(`/api/topic`).then((res) => res.data)
     const { isLoading, error, data, isFetching, refetch } = useQuery(['topic'], getuser)
     const exportExcel = (id) => async (e) => {
         e.preventDefault()
-        let result = await axios.get(`/export?id=${id}`, { responseType: 'blob' })
+        let result = await axios.get(`/api/export?id=${id}`, { responseType: 'blob' })
         const url = window.URL.createObjectURL(new Blob([result.data]));
         const link = document.createElement("a");
         link.href = url;
@@ -38,7 +38,7 @@ function Login() {
     }
     const exportZip = (id) => async (e) => {
         e.preventDefault()
-        let result = await axios.get(`/exportzip?id=${id}`, { responseType: 'blob' })
+        let result = await axios.get(`/api/exportzip?id=${id}`, { responseType: 'blob' })
         const url = window.URL.createObjectURL(new Blob([result.data]));
         const link = document.createElement("a");
         link.href = url;
@@ -63,7 +63,7 @@ function Login() {
 
     }, [])
     if (isLoading) return <>...loading</>
-    console.log(data)
+
     return (
         <>
             <ReactNotifications />

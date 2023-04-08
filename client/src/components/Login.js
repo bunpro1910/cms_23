@@ -15,7 +15,7 @@ function Login() {
   let [err, seterr] = useState('')
   let submit_handle = async (e) => {
     e.preventDefault()
-    let { data } = await axios.post(`/authentication`, { username: username, password: password })
+    let { data } = await axios.post(`/api/authentication`, { username: username, password: password })
     console.log(data)
     if (data.isSucess) {
       toast.success("Login Successfully")

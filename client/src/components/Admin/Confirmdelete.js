@@ -15,7 +15,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 function View( props ) {
     const handledelete = async(e)=>{
-        let result = await axios.post(`/admin/deletetopic',{id:props.topic.id}`)
+        let result = await axios.post(`/api/admin/deletetopic',{id:props.topic.id}`)
         props.setshowdelete(false)
     }
     const handleClosedelete = (e)=>{

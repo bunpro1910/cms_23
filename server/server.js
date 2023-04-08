@@ -20,6 +20,7 @@ app.use(bodyParser.urlencoded({ extended: true  }));
 app.use(express.urlencoded({ extended: true })); 
 app.use('/public',express.static((__dirname+ '/public')))
 
+app.use(express.static(__dirname+'/views/'));
 app.use(cookieSession({
     name: 'session',
     keys: ["phamlehaison"],
@@ -49,12 +50,15 @@ app.use(function (req, res, next) {
 });
 
 
+app.use("/api",Main_Routes)
 
-app.use("/",Main_Routes)
+app.use("/api/staff",Staff_Routes)
+app.use("/api/admin",Admin_Routes)
 
-app.use("/staff",Staff_Routes)
-app.use("/admin",Admin_Routes)
 
+app.get('*', function (req,res) {
+    res.sendFile(__dirname + '/views/' + "index.html");
+});
 
 
 var server = require('http').Server(app)

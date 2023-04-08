@@ -10,7 +10,7 @@ import 'react-notifications-component/dist/theme.css'
 import { toast } from 'react-toastify'
 function Login(props) {
 
-    let getuser = () => axios.get(`/department`).then((res) => res.data)
+    let getuser = () => axios.get(`/api/department`).then((res) => res.data)
     const { isLoading, error, data, isFetching, refetch } = useQuery(['department'], getuser)
     const location = useLocation()
     const navigate = useNavigate()
@@ -36,7 +36,7 @@ function Login(props) {
     )
     async function handlesubmit(e) {
         e.preventDefault()
-        let result = await axios.post(`/admin/adduser`, { user, update: location.state?.update });
+        let result = await axios.post(`/api/admin/adduser`, { user, update: location.state?.update });
 
         if (result.data.isSuccess) {
             setuser({

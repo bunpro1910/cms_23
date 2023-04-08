@@ -8,7 +8,7 @@ import axios from 'axios'
 import { useQuery } from 'react-query'
 function View({ props }) {
 
-  let getuser = () => axios.get(`/view?id=${props.id}`).then((res) => res.data)
+  let getuser = () => axios.get(`/api/view?id=${props.id}`).then((res) => res.data)
   console.log(props)
   const socketRef = useRef();
   const { isLoading, error, data, isFetching, refetch } = useQuery('view', getuser)

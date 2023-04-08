@@ -17,7 +17,7 @@ function Login() {
     const socketRef = useRef()
 
     const navigate = useNavigate()
-    let getuser = () => axios.get(`/staff/departmentdetail`).then((res) => res.data)
+    let getuser = () => axios.get(`/api/staff/departmentdetail`).then((res) => res.data)
     const [store, setstore] = useState('')
     const { isLoading, error, data, isFetching, refetch } = useQuery(['departmentdetail'], getuser)
 

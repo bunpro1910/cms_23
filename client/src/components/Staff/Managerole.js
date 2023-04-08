@@ -16,7 +16,7 @@ function Login() {
     const [role, setRole] = useState('')
     const socketRef = useRef()
     const navigate = useNavigate()
-    let getUsers = () => axios.get(`/staff/role`).then((res) => res.data)
+    let getUsers = () => axios.get(`/api/staff/role`).then((res) => res.data)
     const { isLoading, error, data, isFetching, refetch } = useQuery(['role'], getUsers)
 
     const handleDelete = (role) => (e) => {
@@ -34,7 +34,7 @@ function Login() {
     }
 
     useEffect(() => {
-        socketRef.current = io.connect(`http://localhost:3001`)
+        socketRef.current = io.connect(`/`)
         socketRef.current.on('reloadrole', (args) => {
             refetch()
         })

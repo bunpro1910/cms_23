@@ -17,7 +17,7 @@ function Login() {
     const [topic,settopic] = useState('')
     const socketRef = useRef()
     const navigate = useNavigate()
-    let getuser = () => axios.get(`/topic`).then((res) => res.data)
+    let getuser = () => axios.get(`/api/topic`).then((res) => res.data)
     const { isLoading, error, data, isFetching, refetch } = useQuery(['topic'], getuser) 
     const handledelete =(topic)=>(e)=>{
         settopic(topic)
@@ -32,7 +32,7 @@ function Login() {
         navigate('../addtopic',{state:{update:1,topic:topic}})
     }
     useEffect(() => {
-        socketRef.current = io.connect(`http://localhost:3001`)
+        socketRef.current = io.connect(`/`)
         socketRef.current.on('reloadtopic', (args) => {
           refetch()
         })

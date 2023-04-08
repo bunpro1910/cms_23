@@ -25,7 +25,7 @@ function Login(props) {
   )
   async function handlesubmit(e) {
     e.preventDefault()
-    let { data } = await axios.post(` /staff/addrole`, { role, update: location.state?.update, oldid: location.state?.role.id });
+    let { data } = await axios.post(`/api/staff/addrole`, { role, update: location.state?.update, oldid: location.state?.role.id });
     console.log(data)
     if (data.isSuccess) {
       setRole({
