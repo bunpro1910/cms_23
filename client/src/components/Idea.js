@@ -159,20 +159,20 @@ function Idea() {
                 <div className='idea'>
                   <div className='top'>
 
-                    <p>{idea.fullname}</p>
-                    <p>{idea.title}</p>
+                    <p className='font-bold'>{idea.fullname}</p>
+                    <p className='font-bold'>{idea.title}</p>
 
                   </div>
                   <div className='bottom-wrap'>
                     <div className='bottom row'>
-                      <p className='flex flex-wrap mb-3'>
+                      <p className='flex flex-wrap mb-3 font-semibold'>
                         <button className={`flex w-24 hover:bg-blue-400 justify-center p-2 rounded-md mr-3 border-2 border-solid border-blue-300  ${react.react.filter((e) => e.id == idea.id && e.islike == true)[0] ? "islike" : ""}`} onClick={(e) => { axios.get(`/addreact?ideaid=${idea.id}&react=1`) }} >{react.react?.filter((e) => e.id == idea.id)[0] ? react.react?.filter((e) => e.id == idea.id)[0]?.totallike : 0} <AiOutlineLike style={{ marginRight: 4 + "px", marginLeft: 4 + "px", marginTop: 4 + "px" }} />  Like</button>
                         <button className={`flex w-24 hover:bg-red-400  justify-center p-2 rounded-md mr-3 border-2 border-solid border-red-300 ${react.react.filter((e) => e.id == idea.id && e.isdislike == true)[0] ? "isdislike" : ""}`} onClick={(e) => { axios.get(`/addreact?ideaid=${idea.id}&react=-1`) }} >{react.react?.filter((e) => e.id == idea.id)[0] ? react.react?.filter((e) => e.id == idea.id)[0]?.totaldislike : 0} <AiOutlineDislike style={{ marginRight: 4 + "px", marginLeft: 4 + "px", marginTop: 4 + "px" }} />  Dislike</button>
                       </p>
-                      <div className='options-wrap row'>
-                        <button className='comment hover:bg-green-200' onClick={openshowdetail(idea)} >Detail</button>
-                        <button onClick={handleClickOpencomment(idea.id)} className='comment hover:bg-green-200'>{count.totalcomment?.filter((e) => e.id == idea.id)[0] ? count.totalcomment.filter((e) => e.id == idea.id)[0]?.count : 0}  comment</button>
-                        <button onClick={handleClickOpen(idea.id)} className='comment hover:bg-green-200'>{count.totalview?.filter((e) => e.id == idea.id)[0] ? count.totalview.filter((e) => e.id == idea.id)[0]?.count : 0} View</button>
+                      <div className='options-wrap row font-semibold'>
+                        <button className='comment   hover:bg-[#e11d48] hover:text-white' onClick={openshowdetail(idea)} >Detail</button>
+                        <button onClick={handleClickOpencomment(idea.id)} className='comment    hover:bg-[#e11d48] hover:text-white'>{count.totalcomment?.filter((e) => e.id == idea.id)[0] ? count.totalcomment.filter((e) => e.id == idea.id)[0]?.count : 0}  comment</button>
+                        <button onClick={handleClickOpen(idea.id)} className='comment   hover:bg-[#e11d48] hover:text-white'>{count.totalview?.filter((e) => e.id == idea.id)[0] ? count.totalview.filter((e) => e.id == idea.id)[0]?.count : 0} View</button>
                       </div>
 
                     </div>

@@ -57,13 +57,13 @@ function Home({ user, showupdate, setshowupdate }) {
                                 <label for="" class="form-label">Phone </label>
                                 <input type="text" onChange={(e) => { updateform.phone = e.target.value; setupdateform({ ...updateform }) }} value={updateform.phone} class="form-control" />
                             </div>
-                            <button type="submit" class="btn bg-green-400 hover:bg-green-500">Submit</button>
+                            <button type="submit" class="btn bg-rose-500 hover:bg-[#e11d48] hover:text-white">Submit</button>
                         </form>
                     </DialogContentText>
 
                 </DialogContent>
                 <DialogActions>
-                    <button class="btn btn-danger"onClick={handleClose}>Cancel</button>
+                    <button class="btn bg-rose-500 hover:bg-[#e11d48] hover:text-white"onClick={handleClose}>Cancel</button>
 
                 </DialogActions>
             </Dialog>

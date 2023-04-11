@@ -68,7 +68,7 @@ function Login(props) {
 
 
           <div className='mb-3'>
-            <label className='form-label' >ID</label>
+            <label className='form-label ' >ID</label>
             <input type='text' className='form-control' onChange={(e) => { topic.id = e.target.value; settopic({ ...topic }) }} value={topic.id} ></input>
           </div>
           <div className='mb-3'>
@@ -84,7 +84,7 @@ function Login(props) {
             <input type='datetime-local' className='form-control' onChange={(e) => { topic.finalclosuredate = e.target.value; settopic({ ...topic }) }} value={topic.finalclosuredate != '' ? new Date(topic.finalclosuredate).toISOString().split('Z')[0] : ""}></input>
           </div>
           <div className='btn-submit-wrap'>
-            <button type='submit' className='btn btn-primary'>Add Topic</button>
+            <button type='submit' className='btn'>Add Topic</button>
           </div>
         </form>
 

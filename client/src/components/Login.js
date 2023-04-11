@@ -50,7 +50,7 @@ function Login() {
             <input type='password' onChange={(e) => { setpassword(e.target.value) }} value={password}></input>
           </div>
           <div className='btn-submit-wrap'>
-            <button onClick={submit_handle} type='submit' className='submit-login btn-login'>Login</button>
+            <button onClick={submit_handle} type='submit' className='submit-login login-btn '>Login</button>
           </div>
         </form>
       </div>

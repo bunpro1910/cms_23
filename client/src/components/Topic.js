@@ -34,11 +34,11 @@ function Login() {
       return(
         <div key={topic.id} className="topic bg_success" >
           <div className='topic-info'>
-          <Link to={'/idea/'+topic.id} className='topic-link' onClick={localStorage.setItem('topic',topic)} >{topic.id}</Link>
-          <p>{topic.name}</p>
+            <Link to={'/idea/' + topic.id} className='topic-link font-bold' onClick={localStorage.setItem('topic',topic)} >{topic.id}</Link>
+            <p className='font-semibold'>{topic.name}</p>
           </div>
           <div className='topic-deadline'>
-          <p>{new Date(topic.clousuredate).toDateString()+", "+new Date(topic.clousuredate).getHours()+":"+new Date(topic.clousuredate).getMinutes()} - {new Date(topic.finalclosuredate).toDateString()+", "+new Date(topic.finalclosuredate).getHours()+":"+new Date(topic.finalclosuredate).getMinutes()}
+            <p className='font-semibold'>{new Date(topic.clousuredate).toDateString()+", "+new Date(topic.clousuredate).getHours()+":"+new Date(topic.clousuredate).getMinutes()} - {new Date(topic.finalclosuredate).toDateString()+", "+new Date(topic.finalclosuredate).getHours()+":"+new Date(topic.finalclosuredate).getMinutes()}
             </p>
           </div>
         </div>

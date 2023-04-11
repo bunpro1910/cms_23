@@ -9,7 +9,7 @@ import { Link, Outlet, useNavigate } from 'react-router-dom'
 import { io } from 'socket.io-client'
 import axios from 'axios'
 import Footer from './Footer';
-import {toast} from 'react-toastify'
+import { toast } from 'react-toastify'
 
 import { useQuery } from 'react-query'
 
@@ -30,22 +30,22 @@ function Navbar() {
 
 
 
-  }, [])
+  }, [navbar])
 
 
   if (isLoading) { return <></> }
 
-
+  console.log(navbar)
   return (
     <>
 
 
-      <nav className="w-full bg-green-400 shadow">
+      <nav className={"w-full bg-zinc-800 shadow " }>
         <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
           <div>
             <div className="flex items-center justify-between py-3 md:py-5 md:block">
-              <Link  to="/home" style={{textDecoration:"none"}} className="hover:text-white">
-                <h2 className="text-2xl font-bold ">FPT Greenwich</h2>
+              <Link to="/home" style={{ textDecoration: "none" }} className="hover:text-white">
+                <h2 className="text-2xl text-rose-600 font-bold ">FPT Greenwich</h2>
               </Link>
               <div className="md:hidden">
                 <button
@@ -87,32 +87,39 @@ function Navbar() {
           </div>
           <div>
             <div
-              className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${navbar ? "block" : "hidden"
+              className={`flex-1 justify-self-center mt-8 md:block md:pb-0 md:mt-0 ${navbar ? "block" : "hidden"
                 }`}
             >
-              <ul className="w-fit text-left items-center mt-4 justify-center space-y-3 md:flex md:space-x-6 md:space-y-0 ml-auto mr-auto">
+              <ul className="w-fit  uppercase p-4 text-left items-center justify-ceter space-y-3 md:flex md:space-x-6 md:space-y-0 ml-auto mr-auto">
+n
 
+                <li className="navbar-item "><Link to='/home' className='Link hover:text-rose-600 font-bold'>Home <FaHome className="icons" /></Link></li>
 
-                <li className="navbar-item"><Link to='/home' className='Link'>Home <FaHome className="icons" /></Link></li>
-
-                {data.user?.isAdmin || data.user?.isQA ? <li className="navbar-item"><Link to='/manager' className='Link'> Dashboard <MdOutlineAdminPanelSettings  className="icons" /></Link></li> : ""}
+                {data.user?.isAdmin || data.user?.isQA ? <li className="navbar-item"><Link to='/manager' className='Link hover:text-rose-600 font-bold'> Dashboard <MdOutlineAdminPanelSettings className="icons" /></Link></li> : ""}
 
                 {data.user != 'not found' ? <>
-                  <li className="navbar-item"><Link to='/topic' className='Link'>Topic <FaUpload className="icons" /></Link></li>
+                  <li className="navbar-item"><Link to='/topic' className='Link hover:text-rose-600  font-bold'>Topic <FaUpload className="icons" /></Link></li>
 
                   <li className="navbar-item">
                     {localStorage.setItem('user', JSON.stringify(data.user))}
 
+<<<<<<< Updated upstream
                     <Link to='/profile' className='Link'>{data.user.fullname} </Link></li>
                   <li className="navbar-item"><button onClick={ async(e) => {
                     let result = await axios.get('/api/logout')
                     if(result.data.isSuccess) {
+=======
+                    <Link to='/profile' className='Link hover:text-rose-600'>{data.user.fullname} </Link></li>
+                  <li className="navbar-item"><button onClick={async (e) => {
+                    let result = await axios.get('/logout')
+                    if (result.data.isSuccess) {
+>>>>>>> Stashed changes
                       toast.success(`Logout Successfully`)
-                    }else{
+                    } else {
                       toast.error(`Logout failed`)
                     }
-                  }} className='Link btn-logout'>Logout</button></li></>
-                  : <li className="navbar-item"><Link to='login' className='Link'>Login </Link></li>}
+                  }} className='Link btn-common p-2  bg-rose-600 rounded-xl font-bold '>Logout</button></li></>
+                  : <li className="navbar-item "><Link to='login' className='Link btn-common p-2 bg-rose-600 rounded-xl font-bold'>Login </Link></li>}
               </ul>
             </div>
           </div>

@@ -56,13 +56,13 @@ function Home({ user, showchange, setshowchange }) {
                                 <label for="" class="form-label">Confirm Pass </label>
                                 <input type="password" onChange={(e) => { updateform.confirmpass = e.target.value; setupdateform({ ...updateform }) }} value={updateform.confirmpass} class="form-control" />
                             </div>
-                            <button type="submit" class="btn bg-green-400 hover:bg-green-500">Submit</button>
+                            <button type="submit" class="btn bg-rose-500 hover:bg-[#e11d48] hover:text-white">Submit</button>
                         </form>
                     </DialogContentText>
 
                 </DialogContent>
                 <DialogActions>
-                    <button class="btn btn-danger"onClick={handleClose}>Cancel</button>
+                    <button class="btn  bg-rose-500 hover:bg-[#e11d48] hover:text-white"onClick={handleClose}>Cancel</button>
 
                 </DialogActions>
             </Dialog>

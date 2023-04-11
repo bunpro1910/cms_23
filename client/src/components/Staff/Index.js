@@ -36,7 +36,7 @@ function View(props) {
             </div>
             <div className="right">
                 
-              <img  src="https://kinsta.com/wp-content/uploads/2018/03/content-management-system-2.png" alt=""/>
+                    <img src="https://d9hhrg4mnvzow.cloudfront.net/unbouncepages.com/sabil/5ee4b9a6-111_1hc0zk1hc0td000033.jpg?fbclid=IwAR2681wcQXRyy8YDEJGyHGzxlTglnNVEOuNXPq6Dx_3ITJrVbSTIjRqdjMk" alt=""/>
             </div>
 
             </div>
