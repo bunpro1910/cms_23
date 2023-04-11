@@ -103,17 +103,10 @@ n
                   <li className="navbar-item">
                     {localStorage.setItem('user', JSON.stringify(data.user))}
 
-<<<<<<< Updated upstream
                     <Link to='/profile' className='Link'>{data.user.fullname} </Link></li>
                   <li className="navbar-item"><button onClick={ async(e) => {
                     let result = await axios.get('/api/logout')
                     if(result.data.isSuccess) {
-=======
-                    <Link to='/profile' className='Link hover:text-rose-600'>{data.user.fullname} </Link></li>
-                  <li className="navbar-item"><button onClick={async (e) => {
-                    let result = await axios.get('/logout')
-                    if (result.data.isSuccess) {
->>>>>>> Stashed changes
                       toast.success(`Logout Successfully`)
                     } else {
                       toast.error(`Logout failed`)

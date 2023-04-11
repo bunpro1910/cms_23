@@ -9,7 +9,6 @@ import Updateprofile from './Updateprofile'
 import Changepass from './Changepass'
 function Home() {
 
-<<<<<<< Updated upstream
     let getuser = () => axios.get(`/api/authentication`).then((res) => res.data)
     const [showupdate,setshowupdate] = useState(false)
     const [showchange,setshowchange] = useState(false)
@@ -20,18 +19,6 @@ function Home() {
     }, [])
     if(isLoading) return <>...loading</>
 
-=======
-  let getuser = () => axios.get(`/authentication`).then((res) => res.data)
-  const [showupdate, setshowupdate] = useState(false)
-  const [showchange, setshowchange] = useState(false)
-  const { isLoading, error, data, isFetching, refetch } = useQuery('authentication', getuser)
-  useEffect(() => {
-
-
-  }, [])
-  if (isLoading) return <>...loading</>
-  console.log(data)
->>>>>>> Stashed changes
   return (
     <>
       {showchange ? <Changepass user={data.user} showchange={showchange} setshowchange={setshowchange} /> : ""}
