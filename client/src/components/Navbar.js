@@ -22,7 +22,7 @@ function Navbar() {
   const { isLoading, error, data, isFetching, refetch } = useQuery('authentication', getuser, { staleTime: Infinity, cacheTime: Infinity })
   useEffect(() => {
 
-    socketRef.current = io.connect('/')
+    socketRef.current = io.connect('http://localhost:3000/')
     socketRef.current.on('authentication', (args) => {
       refetch()
 

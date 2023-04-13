@@ -33,7 +33,7 @@ function Login() {
         navigate('../adddepartment', { state: { update: 1, department: depart } })
     }
     useEffect(() => {
-        socketRef.current = io.connect(`/`)
+        socketRef.current = io.connect(`http://localhost:3000/`)
         socketRef.current.on('reloadcate', (args) => {
             refetch()
         })

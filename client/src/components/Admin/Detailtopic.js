@@ -58,10 +58,7 @@ function View( props ) {
             <p>Final Date: {new Date(props.topic.finalclosuredate).getHours() + ":" + new Date(props.topic.finalclosuredate).getMinutes() + ", "+ new Date(props.topic.finalclosuredate).toDateString()} </p>
             </li>
            </ul>
-           
-            
           </DialogContentText>
-
         </DialogContent>
         <DialogActions>
               <Button onClick={handleClosedetail}>Close</Button>

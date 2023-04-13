@@ -24,11 +24,11 @@ function View(props) {
   const { isLoading, error, data, isFetching, refetch } = useQuery(['comment', props.id], getuser)
   let handle_submit = (e) => {
     e.preventDefault();
-    axios.post(`/addcomment`, { comment: comment, time: new Date(), ideaid: props.id })
+    axios.post(`/api/addcomment`, { comment: comment, time: new Date(), ideaid: props.id })
     setcomment('')
   }
   useEffect(() => {
-    socketRef.current = io.connect(`/`)
+    socketRef.current = io.connect(`http://localhost:3000/`)
     socketRef.current.on('newcomment', (args) => {
       refetch()
     })

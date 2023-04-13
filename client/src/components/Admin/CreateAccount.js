@@ -46,7 +46,6 @@ function Login(props) {
                 departmentid: '',
                 fullname: '',
                 password: '',
-
             })
 
             toast.success("add successfully")

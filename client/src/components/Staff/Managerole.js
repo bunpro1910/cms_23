@@ -34,7 +34,7 @@ function Login() {
     }
 
     useEffect(() => {
-        socketRef.current = io.connect(`/`)
+        socketRef.current = io.connect(`http://localhost:3000/`)
         socketRef.current.on('reloadrole', (args) => {
             refetch()
         })

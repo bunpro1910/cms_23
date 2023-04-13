@@ -32,7 +32,7 @@ function Login() {
         navigate('../addtopic',{state:{update:1,topic:topic}})
     }
     useEffect(() => {
-        socketRef.current = io.connect(`/`)
+        socketRef.current = io.connect(`http://localhost:3000/`)
         socketRef.current.on('reloadtopic', (args) => {
           refetch()
         })

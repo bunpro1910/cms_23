@@ -16,15 +16,15 @@ function Home({ user, showchange, setshowchange }) {
     const handleClose = (e) => {
         setshowchange(false)
     }
-   
-    const [updateform,setupdateform] = useState({id:user.id,oldpass:'',newpass:'',confirmpass:''})
-    const handleSubmit= async(e)=>{
+
+    const [updateform, setupdateform] = useState({ id: user.id, oldpass: '', newpass: '', confirmpass: '' })
+    const handleSubmit = async (e) => {
         e.preventDefault()
         console.log(updateform)
-        let result = await axios.post('/api/staff/changepass',updateform)
-        if(result.data.isSuccess) {
+        let result = await axios.post('/api/staff/changepass', updateform)
+        if (result.data.isSuccess) {
             toast.success(`${result.data.message}`)
-        }else{
+        } else {
             toast.error(`${result.data.message}`)
         }
     }
@@ -62,7 +62,7 @@ function Home({ user, showchange, setshowchange }) {
 
                 </DialogContent>
                 <DialogActions>
-                    <button class="btn  bg-rose-500 hover:bg-[#e11d48] hover:text-white"onClick={handleClose}>Cancel</button>
+                    <button class="btn  bg-rose-500 hover:bg-[#e11d48] hover:text-white" onClick={handleClose}>Cancel</button>
 
                 </DialogActions>
             </Dialog>
