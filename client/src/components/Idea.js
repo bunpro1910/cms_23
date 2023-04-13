@@ -91,7 +91,7 @@ function Idea() {
   if (idea.quantity == 0) {
     return (
       <div className='idea-page'>
-        {new Date(topic.topic[0].clousuredate) <= new Date() && new Date() <= new Date(topic.topic[0].finalclosuredate) ? <Link to='/addidea' state={{ topicid: id }}>add new idea</Link> : ""}
+         {new Date() <= new Date(topic.topic[0].clousuredate) ? <Link to='/addidea' className='create-new' state={{ topicid: id }}>add new idea</Link> : ""}
         <p>{idea.idea}</p>
       </div>)
   }

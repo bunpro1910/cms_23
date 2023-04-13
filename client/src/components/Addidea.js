@@ -48,7 +48,7 @@ function Login({ state }) {
 
 
   }
-  let getcate = () => axios.get(`/category`).then((res) => res.data)
+  let getcate = () => axios.get(`/api/category`).then((res) => res.data)
 
   const { data, isLoading, isError, isFetching } = useQuery(['category'], getcate)
 
