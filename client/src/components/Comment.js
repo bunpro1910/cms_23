@@ -12,9 +12,12 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import ReactQuill from 'react-quill';
 
+import HTMLString from 'react-html-string';
 function View(props) {
   console.log(props)
+  const editorRef = useRef(null);
   let [comment, setcomment] = useState('')
   let getuser = () => axios.get(`/api/comment?id=${props.id}`).then((res) => res.data)
   const socketRef = useRef();
@@ -33,6 +36,7 @@ function View(props) {
       refetch()
     })
   }, [])
+  console.log(comment)
   if (isLoading) { return <></> }
   if (props.id == -1) {
     return <></>
@@ -41,6 +45,9 @@ function View(props) {
     return <></>
   }
   console.log(data)
+
+
+
 
   return (
     <>
@@ -64,8 +71,9 @@ function View(props) {
                 return (
                   <>
                     <div className='previous-comment'>
-                      <div className='info'>
-                        <p>{item.text}</p>
+                      <div className='info ql-editor !p-0'>
+                        <HTMLString html={item.text}  />
+                        {/* <div dangerouslySetInnerHTML={{ __html:  }}></div> */}
                       </div>
 
                       <p className='date !text-xs'>{new Date(item.datetime).toDateString() + ", " + new Date(item.datetime).getHours() + ":" + new Date(item.datetime).getMinutes()}</p>
@@ -80,9 +88,38 @@ function View(props) {
         <DialogActions>
 
           {new Date() <= new Date(props.finalclosuredate) ? <form onSubmit={handle_submit} className="form-comment">
-            <div className='new-comment flex flex-row justify-center items-center  '>
-              <input type='text' placeholder='input comment ' className='input-comment' onChange={(e) => { setcomment(e.target.value) }} value={comment}></input>
-              <button className='text-4xl ml-2'><AiOutlineSend className='' /></button>
+            <div className='new-comment flex flex-row justify-center items-center relative  '>
+
+              <ReactQuill theme="snow" value={comment} modules={{
+                toolbar: [
+                  ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+                  ['blockquote', 'code-block'],
+
+                  [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+                  [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                  [{ 'direction': 'rtl' }],                         // text direction
+
+                  [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+                  [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+                  [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+          
+                  [{ 'align': [] }],
+
+                  ['clean']      
+                ],
+              }} formats={[
+                'header',
+                'bold', 'italic', 'underline', 'strike', 'blockquote',
+                'list', 'bullet', 'indent',
+                'link', 'image','color','background','size', 'code-block'
+              ]} onChange={setcomment} 
+                
+              />
+
+
+              {/* <input type='text' placeholder='input comment ' className='input-comment' onChange={(e) => { setcomment(e.target.value) }} value={comment}></input> */}
+              <button className='text-4xl ml-2'><AiOutlineSend className='absolute ' style={{right:"30px", bottom:"25px"}} /></button>
             </div>
           </form> : ""}
           <Button onClick={handleClosecomment}>Cancel</Button>
