@@ -24,6 +24,8 @@ function Home({ user, showchange, setshowchange }) {
         let result = await axios.post('/api/staff/changepass', updateform)
         if (result.data.isSuccess) {
             toast.success(`${result.data.message}`)
+            setshowchange(false)
+            setupdateform({ id: user.id, oldpass: '', newpass: '', confirmpass: '' })
         } else {
             toast.error(`${result.data.message}`)
         }
