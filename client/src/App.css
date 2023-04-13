@@ -611,23 +611,20 @@ input {
   border-radius: 5px;
 }
 
-.page-wrap {
-  padding: 20px;
-  background-color: #2e4f4f;
-  border-radius: 5px;
-}
+
 
 .page-wrap a {
   color: black;
   text-decoration: none;
   padding: 5px;
-  background-color: #eee;
+ 
   margin-right: 5px;
   border-radius: 5px;
   display: inline-flex;
   height: 25px;
   align-items: center;
 }
+
 
 .sample-account {
   margin-bottom: 5px;
