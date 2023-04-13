@@ -93,14 +93,17 @@
   text-decoration: none;
   /* color: #fff; */
 }
-
+.btn-common{
+  border-width: 1px;
+  border-style: solid;
+  border-color: #e2574c;
+}
 .btn-common:hover {
   background: rgba(38, 38, 38, 0);
   box-shadow: none;
   color: #e2574c;
-  border-style: dashed;
-  border-width: 1px;
-  border-color: #e2574c;
+  border-style: dashed; 
+
 }
 
 .login {
