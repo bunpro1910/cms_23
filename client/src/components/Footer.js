@@ -29,7 +29,7 @@ function Footer() {
                         </ul>
                     </div>
                     <div className='fotter-list'>
-                        <h3 className='footer-name text-white uppercase'>Follow us</h3>
+                        <h3 className='footer-name text-white uppercase'>Project Link</h3>
                         <ul className='text-gray-400'>
                             <li className=' transition-all ml-4 my-2 ease-in-out duration-500 hover:text-rose-600  hover:pl-20 hover:border-none hover:cursor-pointer ' >  <a className='hover:!text-white hover:no-underline' href="https://www.facebook.com/groups/fgw.comp1640.2023.01" target='_blank'><FaFacebook className="icons mr-2" /> Facebook</a></li>
                             <li className=' transition-all ml-4 my-2 ease-in-out duration-500 hover:text-rose-600  hover:pl-20 hover:border-none hover:cursor-pointer'> <AiFillGithub className="icons mr-2" /> Github  </li>
