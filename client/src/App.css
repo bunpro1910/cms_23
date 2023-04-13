@@ -439,9 +439,11 @@ input {
   width: 80%;
 }
 
+
 .footer-page {
-  width: 100%;
   padding-top: 40px;
+  background-color: inherit;
+  width: 100%;
   font-family: "Rubik", sans-serif !important;
 }
 

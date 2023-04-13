@@ -30,6 +30,7 @@ import { ToastContainer } from 'react-toastify'
 import CreateAccount from './components/Admin/CreateAccount'
 import Profile from './components/Staff/Profile'
 import 'react-quill/dist/quill.snow.css';
+import Footer from './components/Footer'
 function App() {
   let getuser = () => axios.get("/api/authentication").then((res) => res.data)
   const socketRef = useRef();
@@ -91,6 +92,7 @@ function App() {
         </Routes>
       </BrowserRouter>
       <ToastContainer />
+      <Footer/>
     </div>
   );
 }

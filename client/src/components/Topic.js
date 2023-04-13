@@ -6,6 +6,7 @@ import axios from 'axios'
 import io from 'socket.io-client'
 import {useQuery}from 'react-query'
 function Login() {
+  const date= new Date()
   let gettopic =()=> axios.get(`/api/topic`).then((res) => res.data)
   const socketRef = useRef();
   const { isLoading, error, data, isFetching,refetch  } = useQuery('topic',gettopic,{retry:1})
@@ -32,7 +33,7 @@ function Login() {
 
     {data.topic.map((topic,i)=>{
       return(
-        <div key={topic.id} className="topic bg_success" >
+        <div key={topic.id} className={`topic bg-success ${new Date(topic.clousuredate)<date?"!bg-yellow-300":"" } ${new Date(topic.finalclosuredate)<date?"!bg-red-400":"" }`}>
           <div className='topic-info'>
             <Link to={'/idea/' + topic.id} className='topic-link font-bold' onClick={localStorage.setItem('topic',topic)} >{topic.id}</Link>
             <p className='font-semibold'>{topic.name}</p>
