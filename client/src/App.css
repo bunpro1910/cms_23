@@ -678,7 +678,6 @@ input {
   width: 20%;
   margin-inline: inherit;
   margin-bottom: 15px;
-  /* background: linear-gradient(360deg, #e9fbcf 10%, #1d7d8e 360%); */
   height: 30px;
   /* color: #000; */
   text-decoration: none;
@@ -689,6 +688,7 @@ input {
   text-shadow: none;
   border-radius: 100px;
   font-weight: 700;
+  
 }
 
 .create-new:hover {
@@ -803,6 +803,7 @@ table {
     background-color: black;
   }
 }
+
 
 .img-fluid {
   width: 100%;
