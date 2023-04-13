@@ -56,9 +56,9 @@ app.use("/api/staff",Staff_Routes)
 app.use("/api/admin",Admin_Routes)
 
 
-app.get('*', function (req,res) {
-    res.sendFile(__dirname + '/views/' + "index.html");
-});
+// app.get('*', function (req,res) {
+//     res.sendFile(__dirname + '/views/' + "index.html");
+// });
 
 
 var server = require('http').Server(app)

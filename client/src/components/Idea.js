@@ -59,7 +59,7 @@ function Idea() {
   };
   useEffect(() => {
 
-    socketRef.current = io.connect(`/`)
+    socketRef.current = io.connect(`http://localhost:3001/`)
     socketRef.current.on('newtopic', (args) => {
       refetchidea()
     })
@@ -166,8 +166,8 @@ function Idea() {
                   <div className='bottom-wrap'>
                     <div className='bottom row'>
                       <p className='flex flex-wrap mb-3 font-semibold'>
-                        <button className={`flex w-24 hover:bg-blue-400 justify-center p-2 rounded-md mr-3 border-2 border-solid border-blue-300  ${react.react.filter((e) => e.id == idea.id && e.islike == true)[0] ? "islike" : ""}`} onClick={(e) => { axios.get(`/addreact?ideaid=${idea.id}&react=1`) }} >{react.react?.filter((e) => e.id == idea.id)[0] ? react.react?.filter((e) => e.id == idea.id)[0]?.totallike : 0} <AiOutlineLike style={{ marginRight: 4 + "px", marginLeft: 4 + "px", marginTop: 4 + "px" }} />  Like</button>
-                        <button className={`flex w-24 hover:bg-red-400  justify-center p-2 rounded-md mr-3 border-2 border-solid border-red-300 ${react.react.filter((e) => e.id == idea.id && e.isdislike == true)[0] ? "isdislike" : ""}`} onClick={(e) => { axios.get(`/addreact?ideaid=${idea.id}&react=-1`) }} >{react.react?.filter((e) => e.id == idea.id)[0] ? react.react?.filter((e) => e.id == idea.id)[0]?.totaldislike : 0} <AiOutlineDislike style={{ marginRight: 4 + "px", marginLeft: 4 + "px", marginTop: 4 + "px" }} />  Dislike</button>
+                        <button className={`flex w-24 hover:bg-blue-400 justify-center p-2 rounded-md mr-3 border-2 border-solid border-blue-300  ${react.react.filter((e) => e.id == idea.id && e.islike == true)[0] ? "islike" : ""}`} onClick={(e) => { axios.get(`/api/addreact?ideaid=${idea.id}&react=1`) }} >{react.react?.filter((e) => e.id == idea.id)[0] ? react.react?.filter((e) => e.id == idea.id)[0]?.totallike : 0} <AiOutlineLike style={{ marginRight: 4 + "px", marginLeft: 4 + "px", marginTop: 4 + "px" }} />  Like</button>
+                        <button className={`flex w-24 hover:bg-red-400  justify-center p-2 rounded-md mr-3 border-2 border-solid border-red-300 ${react.react.filter((e) => e.id == idea.id && e.isdislike == true)[0] ? "isdislike" : ""}`} onClick={(e) => { axios.get(`/api/addreact?ideaid=${idea.id}&react=-1`) }} >{react.react?.filter((e) => e.id == idea.id)[0] ? react.react?.filter((e) => e.id == idea.id)[0]?.totaldislike : 0} <AiOutlineDislike style={{ marginRight: 4 + "px", marginLeft: 4 + "px", marginTop: 4 + "px" }} />  Dislike</button>
                       </p>
                       <div className='options-wrap row font-semibold'>
                         <button className='comment   hover:bg-[#e11d48] hover:text-white' onClick={openshowdetail(idea)} >Detail</button>

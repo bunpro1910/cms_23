@@ -28,7 +28,7 @@ function View(props) {
     setcomment('')
   }
   useEffect(() => {
-    socketRef.current = io.connect(`http://localhost:3000/`)
+    socketRef.current = io.connect(`http://localhost:3001/`)
     socketRef.current.on('newcomment', (args) => {
       refetch()
     })
