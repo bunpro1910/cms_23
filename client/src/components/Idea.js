@@ -14,6 +14,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { toast } from 'react-toastify'
+import HTMLString from 'react-html-string';
 function Idea() {
   let params = useParams()
   let [showview, setshowview] = useState(false)
@@ -72,11 +73,8 @@ function Idea() {
       refetchreact()
     })
     socketRef.current.on('reloadidea', (args) => {
-      let user = JSON.parse(localStorage.getItem('user'))
-      console.log(args, user)
-      if (args.user.find(user.id)) {
-        toast.success("your staff was submited")
-      }
+
+
       refetchidea()
     })
 
@@ -139,7 +137,7 @@ function Idea() {
               <p >username : {ideadetail.fullname}</p>
               <p>brief : {ideadetail.brief}</p>
               <p>Filepath : {ideadetail.filepath}</p>
-              <p>Content : {ideadetail.text}</p>
+              <p>Content :  <HTMLString html={ideadetail.text} /></p>
               <p>category : {ideadetail.categoryname}</p>
               <p className='date !text-xs'>Date {ideadetail.datetime}</p>
             </div>
