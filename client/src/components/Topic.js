@@ -33,7 +33,7 @@ function Login() {
 
     {data.topic.map((topic,i)=>{
       return(
-        <div key={topic.id} className={`topic bg-success ${new Date(topic.clousuredate)<date?"!bg-yellow-300":"" } ${new Date(topic.finalclosuredate)<date?"!bg-red-400":"" }`}>
+        <div key={topic.id} className={`topic ${new Date(topic.clousuredate)<date?new Date(topic.finalclosuredate)<date?"!bg-red-400":"!bg-yellow-300":" bg-success"} `}>
           <div className='topic-info'>
             <Link to={'/idea/' + topic.id} className='topic-link font-bold' onClick={localStorage.setItem('topic',topic)} >{topic.id}</Link>
             <p className='font-semibold'>{topic.name}</p>
