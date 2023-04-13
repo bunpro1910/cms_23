@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import Footer from './components/Footer'
+
 import { ReactNotifications, Store } from 'react-notifications-component'
 import 'react-notifications-component/dist/theme.css'
 import {QueryClientProvider,QueryClient}from 'react-query'
@@ -17,7 +17,7 @@ root.render(
       <ReactNotifications />
     <App />
   
-   <Footer/>
+  
     </QueryClientProvider>
   </React.StrictMode>
 );
