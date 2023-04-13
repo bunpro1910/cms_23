@@ -6,6 +6,7 @@ import axios from 'axios'
 import { ReactNotifications, Store } from 'react-notifications-component'
 import { useQuery } from 'react-query'
 import Formdata from 'form-data'
+import ReactQuill from 'react-quill';
 import { toast } from 'react-toastify'
 function Login({ state }) {
   let navigate = useNavigate()
@@ -91,8 +92,35 @@ function Login({ state }) {
             <input type="file" onChange={(e) => { addidea.file = e.target.files[0]; setaddidea({ ...addidea }) }} value={addidea.file.filename} class="form-control" />
           </div>
           <div class="mb-3">
-            <label class="form-label">Text</label>
-            <textarea cols="30" onChange={(e) => { addidea.text = e.target.value; setaddidea({ ...addidea }) }} value={addidea.text} rows="10" ype="password" class="form-control" />
+          <label class="form-label">Text</label>
+          <ReactQuill theme="snow" value={addidea.text} modules={{
+                toolbar: [
+                  ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+                  ['blockquote', 'code-block'],
+
+                  [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+                  [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                  [{ 'direction': 'rtl' }],                         // text direction
+
+                  [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+                  [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+                  [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+          
+                  [{ 'align': [] }],
+
+                  ['clean']      
+                ],
+              }} formats={[
+                'header',
+                'bold', 'italic', 'underline', 'strike', 'blockquote',
+                'list', 'bullet', 'indent',
+                'link', 'image','color','background','size', 'code-block'
+              ]} onChange={(e) => { addidea.text = e; setaddidea({ ...addidea }); }} 
+                
+              />
+ 
+           
           </div>
           <div class="mb-3 form-check">
             <input type="checkbox" class="form-check-input" id="exampleCheck1" onChange={(e) => { setaccept(e.target.checked) }} checked={accept} />
