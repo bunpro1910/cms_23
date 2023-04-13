@@ -41,50 +41,7 @@ function View(props) {
     return <></>
   }
   console.log(data)
-  if (data.quantity == 0) {
 
-
-    return (
-
-
-      <>
-        <Dialog
-          open={props.showcomment}
-          onClose={handleClosecomment}
-          scroll='paper'
-
-          fullWidth={true}
-          maxWidth='md'
-        >
-          <DialogTitle>Comment</DialogTitle>
-          <DialogContent dividers={true}>
-            <DialogContentText
-
-              tabIndex={-1}
-            >
-              <div className='comment-page'>
-                {data.comment}
-
-
-              </div>
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            { new Date()<=new Date(props.finalclosuredate) ? <form onSubmit={handle_submit} className="form-comment">
-              <div className='new-comment'>
-                <input type='text' placeholder='input comment' className='input-comment' onChange={(e) => { setcomment(e.target.value) }} value={comment}></input>
-                <button className='btn-send'><AiOutlineSend /></button>
-              </div>
-            </form> : ""}
-
-            <Button onClick={handleClosecomment}>Cancel</Button>
-
-          </DialogActions>
-        </Dialog>
-      </>
-
-    )
-  }
   return (
     <>
 
@@ -103,7 +60,7 @@ function View(props) {
             tabIndex={-1}
           >
             <div className='space-y-4 '>
-              {data.comment.map((item) => {
+              {data.quantity == 0 ? <div className='text-center'>don't have any comment</div> : data.comment.map((item) => {
                 return (
                   <>
                     <div className='previous-comment'>
@@ -111,27 +68,23 @@ function View(props) {
                         <p>{item.text}</p>
                       </div>
 
-                      <p className='date !text-xs'>{new Date(item.datetime).toDateString()+", "+new Date(item.datetime).getHours()+":"+new Date(item.datetime).getMinutes()}</p>
+                      <p className='date !text-xs'>{new Date(item.datetime).toDateString() + ", " + new Date(item.datetime).getHours() + ":" + new Date(item.datetime).getMinutes()}</p>
                     </div>
                     <hr />
                   </>
                 )
               })}
-
-
-
             </div>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
 
-        {new Date()<=new Date(props.finalclosuredate) ? <form onSubmit={handle_submit} className="form-comment">
-              <div className='new-comment flex flex-row justify-center items-center  '>
+          {new Date() <= new Date(props.finalclosuredate) ? <form onSubmit={handle_submit} className="form-comment">
+            <div className='new-comment flex flex-row justify-center items-center  '>
               <input type='text' placeholder='input comment ' className='input-comment' onChange={(e) => { setcomment(e.target.value) }} value={comment}></input>
               <button className='text-4xl ml-2'><AiOutlineSend className='' /></button>
-              </div>
-
-            </form> : ""}
+            </div>
+          </form> : ""}
           <Button onClick={handleClosecomment}>Cancel</Button>
         </DialogActions>
       </Dialog>

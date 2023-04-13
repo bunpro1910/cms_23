@@ -191,7 +191,7 @@ function Idea() {
         <div className="page-wrap">
 
           {[...Array(idea.idea[idea.idea.length - 1].page)].map((x, i) => {
-            return <Link className={ params.page ==(i+1)?"!bg-rose-600":"!bg-slate-400"} to={`/idea/${id}/${i + 1}`} onClick={(e) => { window.scroll({ top: 0, left: 0, behavior: 'smooth' }) }}> {i + 1}</Link>
+            return <Link className={ params.page == (i+1)||(!params.page &&i==0)?"!bg-rose-600":"!bg-slate-400"} to={`/idea/${id}/${i + 1}`} onClick={(e) => { window.scroll({ top: 0, left: 0, behavior: 'smooth' }) }}> {i + 1}</Link>
           })}
         </div>
       </div>
