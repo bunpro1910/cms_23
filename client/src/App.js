@@ -34,18 +34,18 @@ import Footer from './components/Footer'
 function App() {
   let getuser = () => axios.get("/api/authentication").then((res) => res.data)
   const socketRef = useRef();
-  const { isLoading, error, data, isFetching, refetch } = useQuery(`authentication`, getuser, { staleTime: Infinity, cacheTime: Infinity })
+  const { isLoading, error, data, isFetching, refetch ,isFetched  } = useQuery(`authentication`, getuser, { staleTime: Infinity, cacheTime: Infinity })
   const [user,setuser]= useState('')
   useEffect(() => {
     setuser(data)
     socketRef.current = io.connect(`http://localhost:3001/`)
     socketRef.current.on('authentication', (args) => {
       refetch()
-   
     })
-    
+   
   }, [data])
   if (isLoading) { return <></> }
+  console.log(data)
   return (
     <div className="App">
 

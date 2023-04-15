@@ -21,8 +21,8 @@ function Navbar({user}) {
 
   useEffect(() => {
 
-  }, [])
-  console.log(user)
+  }, [user])
+ 
   if(!user){
     return <>loadding</>
   }
@@ -95,7 +95,8 @@ function Navbar({user}) {
                     <Link to='/profile' className='Link'>{user.user.fullname} </Link></li>
                   <li className="navbar-item"><button onClick={ async(e) => {
                     let result = await axios.get('/api/logout')
-                    if(result.user.isSuccess) {
+                    console.log(result)
+                    if(result.data.isSuccess) {
                       toast.success(`Logout Successfully`)
                     } else {
                       toast.error(`Logout failed`)
