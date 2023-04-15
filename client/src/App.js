@@ -35,23 +35,24 @@ function App() {
   let getuser = () => axios.get("/api/authentication").then((res) => res.data)
   const socketRef = useRef();
   const { isLoading, error, data, isFetching, refetch } = useQuery(`authentication`, getuser, { staleTime: Infinity, cacheTime: Infinity })
+  const [user,setuser]= useState('')
   useEffect(() => {
-
+    setuser(data)
     socketRef.current = io.connect(`http://localhost:3001/`)
     socketRef.current.on('authentication', (args) => {
       refetch()
+   
     })
-  }, [])
+    
+  }, [data])
   if (isLoading) { return <></> }
-
-
   return (
     <div className="App">
 
       <BrowserRouter>
 
         <Routes>
-          <Route path="/" element={<Navbar />}>
+          <Route path="/" element={<Navbar user={user} />}>
             <Route index element={<Home />} />
             <Route path='login' element={<Login />} />
             <Route path='home' element={<Home />} />
@@ -68,7 +69,7 @@ function App() {
           {data.user != "not found" ? data.user.isAdmin || data.user.isQA ?
             <>
 
-              <Route path="/manager" element={<Navbar />}>
+              <Route path="/manager" element={<Navbar user={user}/>}>
          
                 <Route index element={<Index />} />
                 <Route path='addcate' element={<Addcate />} />

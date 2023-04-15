@@ -13,29 +13,19 @@ import { toast } from 'react-toastify'
 
 import { useQuery } from 'react-query'
 
-function Navbar() {
+function Navbar({user}) {
 
-  let getuser = () => axios.get("/api/authentication").then((res) => res.data)
+
   const socketRef = useRef();
   const [navbar, setNavbar] = useState(true)
 
-  const { isLoading, error, data, isFetching, refetch } = useQuery('authentication', getuser, { staleTime: Infinity, cacheTime: Infinity })
   useEffect(() => {
 
-    socketRef.current = io.connect('http://localhost:3001/')
-    socketRef.current.on('authentication', (args) => {
-      refetch()
-
-    })
-
-
-
-  }, [navbar])
-
-
-  if (isLoading) { return <></> }
-
-  console.log(navbar)
+  }, [])
+  console.log(user)
+  if(!user){
+    return <>loadding</>
+  }
   return (
     <>
 
@@ -91,22 +81,21 @@ function Navbar() {
                 }`}
             >
               <ul className="w-fit  uppercase p-4 text-left items-center justify-ceter space-y-3 md:flex md:space-x-6 md:space-y-0 ml-auto mr-auto">
-n
 
                 <li className="navbar-item "><Link to='/home' className='Link hover:text-rose-600 font-bold'>Home <FaHome className="icons" /></Link></li>
 
-                {data.user?.isAdmin || data.user?.isQA ? <li className="navbar-item"><Link to='/manager' className='Link hover:text-rose-600 font-bold'> Dashboard <MdOutlineAdminPanelSettings className="icons" /></Link></li> : ""}
+                {user.user?.isAdmin || user.user?.isQA ? <li className="navbar-item"><Link to='/manager' className='Link hover:text-rose-600 font-bold'> Dashboard <MdOutlineAdminPanelSettings className="icons" /></Link></li> : ""}
 
-                {data.user != 'not found' ? <>
+                {user.user != 'not found' ? <>
                   <li className="navbar-item"><Link to='/topic' className='Link hover:text-rose-600  font-bold'>Topic <FaUpload className="icons" /></Link></li>
 
                   <li className="navbar-item">
-                    {localStorage.setItem('user', JSON.stringify(data.user))}
+                    {localStorage.setItem('user', JSON.stringify(user.user))}
 
-                    <Link to='/profile' className='Link'>{data.user.fullname} </Link></li>
+                    <Link to='/profile' className='Link'>{user.user.fullname} </Link></li>
                   <li className="navbar-item"><button onClick={ async(e) => {
                     let result = await axios.get('/api/logout')
-                    if(result.data.isSuccess) {
+                    if(result.user.isSuccess) {
                       toast.success(`Logout Successfully`)
                     } else {
                       toast.error(`Logout failed`)
@@ -127,15 +116,15 @@ n
             <div className={"second "+ (navbar&&width>840?"flex flex-row":"")} ref={socketRef}>
               <li className="navbar-item"><Link to='/home' className='Link'>Home </Link><FaHome className="icons" /></li>
 
-              {data.user?.isAdmin || data.user?.isQA ? <li className="navbar-item"><Link to='/manager' className='Link'> Dashboard </Link><MdOutlineAdminPanelSettings className="icons" /></li> : ""}
+              {user.user?.isAdmin || user.user?.isQA ? <li className="navbar-item"><Link to='/manager' className='Link'> Dashboard </Link><MdOutlineAdminPanelSettings className="icons" /></li> : ""}
 
-              {data.user != 'not found' ? <>
+              {user.user != 'not found' ? <>
                 <li className="navbar-item"><Link to='/topic' className='Link'>Topic </Link><FaUpload className="icons" /></li>
 
                 <li className="navbar-item">
-                  {localStorage.setItem('user', JSON.stringify(data.user))}
+                  {localStorage.setItem('user', JSON.stringify(user.user))}
 
-                  <Link to='/login' className='Link'>{data.user.fullname} </Link></li>
+                  <Link to='/login' className='Link'>{user.user.fullname} </Link></li>
                 <li className="navbar-item"><button onClick={(e) => {
                   axios.get('/logout')
 
