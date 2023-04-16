@@ -647,7 +647,9 @@ input {
   background-color: rgb(225 29 72);
   color: #fff;
 }
-
+.Toastify__toast-container--top-right{
+  margin-top: 82px;
+}
 .box-shadow1 {
   position: absolute;
   
