@@ -90,7 +90,7 @@ function App() {
             : "" : ""}
         </Routes>
       </BrowserRouter>
-      <ToastContainer />
+      <ToastContainer autoClose={3000} theme="dark" />
       <Footer/>
     </div>
   );
