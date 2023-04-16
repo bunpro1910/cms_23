@@ -9,7 +9,7 @@ import { ReactNotifications, Store } from 'react-notifications-component'
 import 'react-notifications-component/dist/theme.css'
 import Confirmdelete from './Confirmdeleterole'
 import Detailtopic from './Detailrole'
-
+import socket from '../../model/socket'
 function Login() {
     const [showdelete, setShowdelete] = useState(false)
     const [showdetail, setShowdetail] = useState(false)
@@ -34,17 +34,17 @@ function Login() {
     }
 
     useEffect(() => {
-        socketRef.current = io.connect(`http://localhost:3001/`)
-        socketRef.current.on('reloadrole', (args) => {
+
+        socket.on('reloadrole', (args) => {
             refetch()
         })
     }, [])
 
     if (isLoading) return <>...loading</>
-    console.log(data)
+
     return (
         <>
-            <ReactNotifications />
+      
             <Confirmdelete role={role} showdelete={showdelete} setShowdelete={setShowdelete} />
             <Detailtopic role={role} showdetail={showdetail} setShowdetail={setShowdetail} />
             <div className='container'>

@@ -11,10 +11,10 @@ import { ReactNotifications, Store } from 'react-notifications-component'
 import 'react-notifications-component/dist/theme.css'
 import Confirmdelete from './Confirmdepartment'
 import ChartStatic from './ChartStatic'
+import socket from '../../model/socket'
 function Login() {
     const [showchart, setshowchart] = useState(false)
 
-    const socketRef = useRef()
 
     const navigate = useNavigate()
     let getuser = () => axios.get(`/api/staff/departmentdetail`).then((res) => res.data)
@@ -22,13 +22,12 @@ function Login() {
     const { isLoading, error, data, isFetching, refetch } = useQuery(['departmentdetail'], getuser)
 
     useEffect(() => {
-        socketRef.current = io.connect('')
-        socketRef.current.on('reloadcate', (args) => {
+        socket.on('reloadcate', (args) => {
             refetch()
         })
     }, [])
     if (isLoading) return <>...loading</>
-    console.log(data)
+
     return (
         <>
             <ChartStatic showchart={showchart} setshowchart={setshowchart} data={data} />

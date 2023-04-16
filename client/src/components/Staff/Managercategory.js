@@ -9,6 +9,7 @@ import { ReactNotifications, Store } from 'react-notifications-component'
 import 'react-notifications-component/dist/theme.css'
 import Confirmdelete from './Confirmdelete'
 import Detailtopic from './Detailcategory'
+import socket from '../../model/socket'
 function Login() {
     const [showdelete, setshowdelete] = useState(false)
     const [showdetail, setshowdetail] = useState(false)
@@ -30,13 +31,11 @@ function Login() {
         navigate('../addcate', { state: { update: 1, category: cate } })
     }
     useEffect(() => {
-        socketRef.current = io.connect(`/`)
-        socketRef.current.on('reloadcate', (args) => {
+        socket.on('reloadcate', (args) => {
             refetch()
         })
     }, [])
     if (isLoading) return <>...loading</>
-    console.log(data)
     return (
         <>
             <ReactNotifications />

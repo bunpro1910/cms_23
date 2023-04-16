@@ -13,7 +13,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import ReactQuill from 'react-quill';
-
+import socket from '../model/socket'
 import HTMLString from 'react-html-string';
 function View(props) {
   console.log(props)
@@ -31,8 +31,8 @@ function View(props) {
     setcomment('')
   }
   useEffect(() => {
-    socketRef.current = io.connect(`http://localhost:3001/`)
-    socketRef.current.on('newcomment', (args) => {
+ 
+    socket.on('newcomment', (args) => {
       refetch()
     })
   }, [])
@@ -44,10 +44,6 @@ function View(props) {
   if (!props.showcomment) {
     return <></>
   }
-  console.log(data)
-
-
-
 
   return (
     <>
@@ -87,10 +83,10 @@ function View(props) {
         </DialogContent>
         <DialogActions>
 
-          {new Date() <= new Date(props.finalclosuredate) ? <form onSubmit={handle_submit} className="form-comment">
-            <div className='new-comment flex flex-row justify-center items-center relative  '>
+          {new Date() <= new Date(props.finalclosuredate) ? <form onSubmit={handle_submit} className="my-2 flex justify-between w-full flex-row">
+            
 
-              <ReactQuill theme="snow" value={comment} modules={{
+              {/* <ReactQuill theme="snow" value={comment} modules={{
                 toolbar: [
                   ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
                   ['blockquote', 'code-block'],
@@ -115,12 +111,12 @@ function View(props) {
                 'link', 'image','color','background','size', 'code-block'
               ]} onChange={setcomment} 
                 
-              />
+              /> */}
 
 
-              {/* <input type='text' placeholder='input comment ' className='input-comment' onChange={(e) => { setcomment(e.target.value) }} value={comment}></input> */}
-              <button className='text-4xl ml-2'><AiOutlineSend className='absolute ' style={{right:"30px", bottom:"25px"}} /></button>
-            </div>
+              <input type='text' placeholder='input comment' className='input-comment form-control w-full ml-4' onChange={(e) => { setcomment(e.target.value) }} value={comment}></input>
+              <button className='text-4xl mx-2'><AiOutlineSend className=' '  /></button>
+         
           </form> : ""}
           <Button onClick={handleClosecomment}>Cancel</Button>
         </DialogActions>

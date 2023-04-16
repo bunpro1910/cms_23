@@ -2,7 +2,7 @@
 
 import { useRef, useEffect, useState } from 'react'
 import { Link, Outlet, useNavigate } from 'react-router-dom'
-import { io } from 'socket.io-client'
+
 import axios from 'axios'
 import { useQuery } from 'react-query'
 import { AiOutlineSend } from 'react-icons/ai';
@@ -13,38 +13,15 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { Store } from 'react-notifications-component'
+import { toast } from 'react-toastify';
 function View( props ) {
     const handledelete = async(e)=>{
         let result = await axios.post(`/api/staff/deletecate`,{id:props.category.id})
         if(result.data.isSuccess){
-          Store.addNotification({
-            title: "Delete Success",
-            message: `Delete Success`,
-            type: "success",
-            insert: "top",
-            container: "top-right",
-            animationIn: ["animate__animated", "animate__fadeIn"],
-            animationOut: ["animate__animated", "animate__fadeOut"],
-            dismiss: {
-              duration: 5000,
-              onScreen: true
-            }
-          })
+          toast.success(`Delete Success`)
           props.setshowdelete(false)
         }else{
-          Store.addNotification({
-            title: "Delete failed",
-            message: `Delete failed`,
-            type: "danger",
-            insert: "top",
-            container: "top-right",
-            animationIn: ["animate__animated", "animate__fadeIn"],
-            animationOut: ["animate__animated", "animate__fadeOut"],
-            dismiss: {
-              duration: 5000,
-              onScreen: true
-            }
-          })
+          toast.error(`delete failed`)
         }
     }
     const handleClosedelete = (e)=>{

@@ -16,7 +16,7 @@ import { useQuery } from 'react-query'
 function Navbar({user}) {
 
 
-  const socketRef = useRef();
+
   const [navbar, setNavbar] = useState(true)
 
   useEffect(() => {
@@ -95,7 +95,7 @@ function Navbar({user}) {
                     <Link to='/profile' className='Link'>{user.user.fullname} </Link></li>
                   <li className="navbar-item"><button onClick={ async(e) => {
                     let result = await axios.get('/api/logout')
-                    console.log(result)
+                
                     if(result.data.isSuccess) {
                       toast.success(`Logout Successfully`)
                     } else {

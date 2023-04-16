@@ -12,39 +12,16 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import {toast} from 'react-toastify'
 import { Store } from 'react-notifications-component'
 function View( props ) {
     const handledelete = async(e)=>{
         let result = await axios.post(`/api/staff/deleterole`,{id:props.role.id})
         if(result.data.isSuccess){
-          Store.addNotification({
-            title: "Delete Success",
-            message: `Delete Success`,
-            type: "success",
-            insert: "top",
-            container: "top-right",
-            animationIn: ["animate__animated", "animate__fadeIn"],
-            animationOut: ["animate__animated", "animate__fadeOut"],
-            dismiss: {
-              duration: 5000,
-              onScreen: true
-            }
-          })
-          props.setShowdelete(false)
+          toast.success(`Delete Success`)
+          props.setshowdelete(false)
         }else{
-          Store.addNotification({
-            title: "Delete failed",
-            message: `Delete failed`,
-            type: "danger",
-            insert: "top",
-            container: "top-right",
-            animationIn: ["animate__animated", "animate__fadeIn"],
-            animationOut: ["animate__animated", "animate__fadeOut"],
-            dismiss: {
-              duration: 5000,
-              onScreen: true
-            }
-          })
+          toast.error(`delete failed`)
         }
     }
     const handleClosedelete = (e)=>{

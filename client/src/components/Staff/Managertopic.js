@@ -8,6 +8,8 @@ import { AiOutlineFileExcel, AiOutlineFileZip } from 'react-icons/ai'
 import Notification from '../Notification'
 import { ReactNotifications, Store } from 'react-notifications-component'
 import 'react-notifications-component/dist/theme.css'
+import { toast } from 'react-toastify'
+
 function Login() {
 
     let getuser = () => axios.get(`/api/topic`).then((res) => res.data)
@@ -22,19 +24,8 @@ function Login() {
         link.setAttribute("download", "excel.xlsx");
         document.body.appendChild(link);
         link.click();
-        Store.addNotification({
-            title: "Export successfully",
-            message: `Export successfully`,
-            type: "success",
-            insert: "top",
-            container: "top-right",
-            animationIn: ["animate__animated", "animate__fadeIn"],
-            animationOut: ["animate__animated", "animate__fadeOut"],
-            dismiss: {
-                duration: 5000,
-                onScreen: true
-            }
-        })
+        toast.success(`Export successfully`)
+      
     }
     const exportZip = (id) => async (e) => {
         e.preventDefault()
@@ -45,19 +36,7 @@ function Login() {
         link.setAttribute("download", "excel.zip");
         document.body.appendChild(link);
         link.click();
-        Store.addNotification({
-            title: "Export Zip successfully",
-            message: `Export  Zip successfully`,
-            type: "success",
-            insert: "top",
-            container: "top-right",
-            animationIn: ["animate__animated", "animate__fadeIn"],
-            animationOut: ["animate__animated", "animate__fadeOut"],
-            dismiss: {
-                duration: 5000,
-                onScreen: true
-            }
-        })
+        toast.success(`Export successfully`)
     }
     useEffect(() => {
 

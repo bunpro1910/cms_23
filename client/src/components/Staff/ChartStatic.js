@@ -2,7 +2,7 @@
 
 import { useRef, useEffect, useState } from 'react'
 import { Link, Outlet, useNavigate } from 'react-router-dom'
-import { io } from 'socket.io-client'
+
 import axios from 'axios'
 import { useQuery } from 'react-query'
 import { AiOutlineSend } from 'react-icons/ai';

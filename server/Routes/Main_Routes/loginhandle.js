@@ -20,7 +20,11 @@ let handlelogin = async (req,res)=>{
             }
             req.session.user =user.rows[0]
             res.json({isSucess:true})
-            global.io.emit('authentication',{body:true})
+
+            setTimeout(()=>{
+                global.io.emit('authentication',{body:true})
+            },500)
+          
         return
     }else{
         res.json({isSucess:false,message:"User ID or password not match"})

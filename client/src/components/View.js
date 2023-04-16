@@ -18,7 +18,6 @@ function View({ props }) {
   }, [])
 
   if(isLoading)return <>...loading</>
-  console.log(data)
   return (
 
     <table class="table" >

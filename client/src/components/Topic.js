@@ -5,15 +5,15 @@ import {useState,useEffect,useRef} from 'react'
 import axios from 'axios'
 import io from 'socket.io-client'
 import {useQuery}from 'react-query'
+import socket from '../model/socket'
 function Login() {
   const date= new Date()
   let gettopic =()=> axios.get(`/api/topic`).then((res) => res.data)
   const socketRef = useRef();
   const { isLoading, error, data, isFetching,refetch  } = useQuery('topic',gettopic,{retry:1})
   useEffect( ()=>{
-    
-    socketRef.current = io.connect(`http://localhost:3001/`)
-    socketRef.current.on('newtopic',(args)=>{
+  
+    socket.on('newtopic',(args)=>{
       refetch()
     })
   },[])

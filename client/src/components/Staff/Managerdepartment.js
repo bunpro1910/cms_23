@@ -11,6 +11,7 @@ import { ReactNotifications, Store } from 'react-notifications-component'
 import 'react-notifications-component/dist/theme.css'
 import Confirmdelete from './Confirmdepartment'
 import Detaildepartment from './Detaildepartment'
+import socket from '../../model/socket'
 function Login() {
     const [showdelete, setshowdelete] = useState(false)
     const [showdetail, setshowdetail] = useState(false)
@@ -33,16 +34,15 @@ function Login() {
         navigate('../adddepartment', { state: { update: 1, department: depart } })
     }
     useEffect(() => {
-        socketRef.current = io.connect(`http://localhost:3001/`)
-        socketRef.current.on('reloadcate', (args) => {
+        socket.on('reloadcate', (args) => {
             refetch()
         })
     }, [])
     if (isLoading) return <>...loading</>
-    console.log(data)
+
     return (
         <>
-            <ReactNotifications />
+         
             <Confirmdelete department={department} showdelete={showdelete} setshowdelete={setshowdelete} />
             <Detaildepartment department={department} showdetail={showdetail} setshowdetail={setshowdetail} />
             <div className='container'>

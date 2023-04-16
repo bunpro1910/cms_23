@@ -15,6 +15,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { toast } from 'react-toastify'
 import HTMLString from 'react-html-string';
+import socket from '../model/socket'
 function Idea() {
   let params = useParams()
   let [showview, setshowview] = useState(false)
@@ -24,7 +25,6 @@ function Idea() {
 
   let [idd, setideaid] = useState('')
   const id = params.id
-  console.log(params.page)
   let getidea = () => axios.get(`/api/idea?id=${id}`).then((res) => res.data)
   let getcount = () => axios.get(`/api/count?id=${id}`).then((res) => res.data)
   let getreact = () => axios.get(`/api/countreact?id=${id}`).then((res) => res.data)
@@ -60,19 +60,19 @@ function Idea() {
   };
   useEffect(() => {
 
-    socketRef.current = io.connect(`http://localhost:3001/`)
-    socketRef.current.on('newtopic', (args) => {
+
+    socket.on('newtopic', (args) => {
       refetchidea()
     })
-    socketRef.current.on('reloadcount', (args) => {
+    socket.on('reloadcount', (args) => {
 
       refetchcount()
     })
-    socketRef.current.on('reloadreact', (args) => {
+    socket.on('reloadreact', (args) => {
 
       refetchreact()
     })
-    socketRef.current.on('reloadidea', (args) => {
+    socket.on('reloadidea', (args) => {
 
 
       refetchidea()

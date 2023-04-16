@@ -459,6 +459,11 @@ input {
   height: 30px;
   overflow: hidden;
 }
+.fotter-list ul li a:hover{
+  text-decoration: none !important;
+
+}
+
 .form-manager .ql-editor{
   min-height: 100px !important;
   max-height: 200px;

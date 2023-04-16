@@ -31,21 +31,19 @@ import CreateAccount from './components/Admin/CreateAccount'
 import Profile from './components/Staff/Profile'
 import 'react-quill/dist/quill.snow.css';
 import Footer from './components/Footer'
+import socket from './model/socket'
 function App() {
   let getuser = () => axios.get("/api/authentication").then((res) => res.data)
-  const socketRef = useRef();
-  const { isLoading, error, data, isFetching, refetch ,isFetched  } = useQuery(`authentication`, getuser, { staleTime: Infinity, cacheTime: Infinity })
+  const { isLoading, error, data, isFetching, refetch ,isFetched  } = useQuery(`authentication`, getuser)
   const [user,setuser]= useState('')
   useEffect(() => {
     setuser(data)
-    socketRef.current = io.connect(`http://localhost:3001/`)
-    socketRef.current.on('authentication', (args) => {
-      refetch()
+    socket.on('authentication', (args) => {
+      refetch().then(res=>{setuser(res?.data)})
     })
-   
-  }, [data])
+  
+  })
   if (isLoading) { return <></> }
-  console.log(data)
   return (
     <div className="App">
 
