@@ -13,6 +13,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { Store } from 'react-notifications-component'
+import { toast } from 'react-toastify'
 function View( props ) {
     const handledelete = async(e)=>{
         let result = await axios.post(`/api/staff/deletedepartment`,{id:props.department.id})

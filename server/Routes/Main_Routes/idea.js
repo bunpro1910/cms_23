@@ -11,7 +11,6 @@ let topic = async (req,res)=>{
     let arr =[]
 
     let idea = await connect(query)
-    console.log(idea)
     let page =1;
     idea.rows.map((item,i)=>{
         arr.push({...item,page:page})
@@ -22,7 +21,7 @@ let topic = async (req,res)=>{
     })
 
 
-    console.log(arr)
+
     if(idea.rowCount>0){
         res.json({idea:arr,quantity:idea.rowCount})
     }else{

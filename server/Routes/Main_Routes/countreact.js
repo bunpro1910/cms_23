@@ -8,7 +8,7 @@ const topic = async (req, res) => {
 
     const query = `select i.id, r.react, r.userid from public.topic as t, public.react as r, public.idea as i where t.id='${req.query.id}' and i.topicid= t.id and r.ideaid= i.id order by i.id desc;`;
     const react = await connect(query);
-    console.log(react)
+
 
     const arr = react.rows.reduce((acc, item) => {
         let existingItem = acc.find(e => e.id === item.id);
