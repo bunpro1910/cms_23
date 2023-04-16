@@ -26,12 +26,13 @@ import TermandCondition from './components/TermandCondition'
 import Managerole from './components/Staff/Managerole'
 import Addrole from './components/Staff/Addrole'
 import Manageruser from './components/Admin/Manageuser'
-import { ToastContainer } from 'react-toastify'
+import { ToastContainer,Flip } from 'react-toastify'
 import CreateAccount from './components/Admin/CreateAccount'
 import Profile from './components/Staff/Profile'
 import 'react-quill/dist/quill.snow.css';
 import Footer from './components/Footer'
 import socket from './model/socket'
+
 function App() {
   let getuser = () => axios.get("/api/authentication").then((res) => res.data)
   const { isLoading, error, data, isFetching, refetch ,isFetched  } = useQuery(`authentication`, getuser)
@@ -90,7 +91,7 @@ function App() {
             : "" : ""}
         </Routes>
       </BrowserRouter>
-      <ToastContainer autoClose={3000} theme="dark" />
+      <ToastContainer autoClose={1000} theme="dark" transition={Flip}/>
       <Footer/>
     </div>
   );
