@@ -30,7 +30,6 @@ function Idea() {
   let getreact = () => axios.get(`/api/countreact?id=${id}`).then((res) => res.data)
   let gettopic = () => axios.get(`/api/topic?id=${id}`).then((res) => res.data)
   let user = JSON.parse(localStorage.getItem('user'))
-  const socketRef = useRef();
   const { isLoading: isloadingtopic, error: errtopic, data: topic, isFetchingtopic, refetch: refetchtopic } = useQuery(['topic', params.id], gettopic, { staleTime: Infinity, cacheTime: Infinity })
   const { isLoading: isloadingidea, error: erridea, data: idea, isFetching, refetch: refetchidea } = useQuery(['idea', params.id], getidea, { staleTime: Infinity, cacheTime: Infinity })
   const { isLoading: isloadingcount, error: errcount, data: count, isFetching: isFetchingcount, refetch: refetchcount } = useQuery('count', getcount, { staleTime: Infinity, cacheTime: Infinity })
@@ -74,7 +73,6 @@ function Idea() {
     })
     socket.on('reloadidea', (args) => {
 
-
       refetchidea()
     })
 
@@ -85,7 +83,7 @@ function Idea() {
   if (isloadingcount) { return <>... loading</> }
   if (isloadingreact) { return <>... loading</> }
   if (isloadingtopic) { return <>... loading</> }
-  console.log(react)
+  
   if (idea.quantity == 0) {
     return (
       <div className='idea-page'>
@@ -107,9 +105,7 @@ function Idea() {
         <DialogTitle >View</DialogTitle>
         <DialogContent dividers={true}>
           <DialogContentText
-
             tabIndex={-1}
-
           >
             <View props={{ id: idd }} />
           </DialogContentText>
@@ -123,7 +119,6 @@ function Idea() {
         open={showdetail}
         onClose={closeshowdetail}
         scroll='paper'
-
         fullWidth={true}
         maxWidth='md'
       >
@@ -156,10 +151,8 @@ function Idea() {
               <>
                 <div className='idea'>
                   <div className='top'>
-
                     <p className='font-bold'>{idea.fullname}</p>
                     <p className='font-bold'>{idea.title}</p>
-
                   </div>
                   <div className='bottom-wrap'>
                     <div className='bottom row'>
@@ -172,19 +165,12 @@ function Idea() {
                         <button onClick={handleClickOpencomment(idea.id)} className='comment    hover:bg-[#e11d48] hover:text-white'>{count.totalcomment?.filter((e) => e.id == idea.id)[0] ? count.totalcomment.filter((e) => e.id == idea.id)[0]?.count : 0}  comment</button>
                         <button onClick={handleClickOpen(idea.id)} className='comment   hover:bg-[#e11d48] hover:text-white'>{count.totalview?.filter((e) => e.id == idea.id)[0] ? count.totalview.filter((e) => e.id == idea.id)[0]?.count : 0} View</button>
                       </div>
-
                     </div>
-
                   </div>
-
-
                 </div>
-
               </>
             )
           }
-
-
         })}
         <div className="page-wrap">
 

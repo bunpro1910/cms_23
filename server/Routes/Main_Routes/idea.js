@@ -17,10 +17,7 @@ let topic = async (req,res)=>{
         if((i+1)%5==0){
             page++
         }
-    
     })
-
-
 
     if(idea.rowCount>0){
         res.json({idea:arr,quantity:idea.rowCount})

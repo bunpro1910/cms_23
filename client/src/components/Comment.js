@@ -47,7 +47,6 @@ function View(props) {
 
   return (
     <>
-
       <Dialog
         open={props.showcomment}
         onClose={handleClosecomment}
@@ -69,9 +68,7 @@ function View(props) {
                     <div className='previous-comment'>
                       <div className='info ql-editor !p-0'>
                         <HTMLString html={item.text}  />
-                        {/* <div dangerouslySetInnerHTML={{ __html:  }}></div> */}
                       </div>
-
                       <p className='date !text-xs'>{new Date(item.datetime).toDateString() + ", " + new Date(item.datetime).getHours() + ":" + new Date(item.datetime).getMinutes()}</p>
                     </div>
                     <hr />
@@ -121,10 +118,7 @@ function View(props) {
           <Button onClick={handleClosecomment}>Cancel</Button>
         </DialogActions>
       </Dialog>
-
-    </>
-
-  );
+    </>);
 }
 
 export default View;

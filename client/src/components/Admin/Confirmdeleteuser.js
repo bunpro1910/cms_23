@@ -12,7 +12,6 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { Store } from 'react-notifications-component'
 import { toast } from 'react-toastify'
 function View( props ) {
     const handledelete = async(e)=>{
@@ -39,7 +38,6 @@ function View( props ) {
   }
   return (
     <>
-
       <Dialog
         open={props.showdelete}
         onClose={handleClosedelete}
@@ -58,10 +56,7 @@ function View( props ) {
             <p>Email: {props.account.email}</p>
             <p>Phone: {props.account.phone}</p>
             <p>Department: {props.account.department_name}</p>
-      
-
           </DialogContentText>
-
         </DialogContent>
         <DialogActions>
               <Button onClick={handleClosedelete}>Cancel</Button>

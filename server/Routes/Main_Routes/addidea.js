@@ -19,7 +19,7 @@ let addtopic = async (req, res, next) => {
   let result = await connect(query)
 
   if (result.rowCount > 0) {
-    let query1 = `select u.id,u.email,u.fullname,u.phone from public.user as u, public.role as r, public.roledetail as rd where rd.roleid = r.id and rd.account_id = u.accountid and r.name = 'QA manager' and u.departmentid = '${req.session.user.departmentid}'`
+    let query1 = `select u.id,u.email,u.fullname,u.phone from public.user as u, public.role as r, public.roledetail as rd where rd.roleid = r.id and rd.account_id = u.accountid and r.id = 9 and u.departmentid = '${req.session.user.departmentid}'`
     let result1 = await connect(query1)
     console.log(result1)
     let arremail = result1.rows.reduce((arr, row) => {

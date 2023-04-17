@@ -3,7 +3,6 @@
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import { ReactNotifications, Store } from 'react-notifications-component'
 import { useQuery } from 'react-query'
 import Formdata from 'form-data'
 import ReactQuill from 'react-quill';
@@ -69,7 +68,7 @@ function Login({ state }) {
   }
   return (
     <>
-      <ReactNotifications />
+  
       <div className='container'>
         <form enctype='multipart/form' className='form-manager' onSubmit={handleSubmit}>
           <div class="mb-3">

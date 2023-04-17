@@ -44,10 +44,8 @@ function Footer() {
                             <li className=' transition-all ml-4 my-2 ease-in-out duration-500 hover:text-rose-600  hover:pl-20 hover:border-none hover:cursor-pointer'> Group Number: 23 </li>
                         </ul>
                     </div>
-
                 </div>
             </div>
-
         </>
     );
 }

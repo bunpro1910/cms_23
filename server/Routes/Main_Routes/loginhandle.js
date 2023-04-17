@@ -8,15 +8,18 @@ let handlelogin = async (req,res)=>{
     let account = await connect(query)
     if(account.rowCount >0){
         
-            let query1 = `select u.id,r.name as rolename ,u.fullname,u.email,u.departmentid,u.phone from public.user as u, public.roledetail as rd, public.role as r where u.accountid = '${req.body.username}' and rd.account_id = u.accountid and rd.roleid = r.id`
+            let query1 = `select u.id,r.name as rolename,r.id as roleid ,u.fullname,u.email,u.departmentid,u.phone from public.user as u, public.roledetail as rd, public.role as r where u.accountid = '${req.body.username}' and rd.account_id = u.accountid and rd.roleid = r.id`
             let user = await connect(query1)     
             console.log(user)
-            if(user.rows.find(e=> e.rolename =="Admin")){
+            if(user.rows.find(e=> e.roleid ==1)){
                 user.rows[0] ={...user.rows[0],isAdmin:true}
             }
 
-            if(user.rows.find(e=> e.rolename =="QA manager")){
+            if(user.rows.find(e=> e.roleid ==2)){
                 user.rows[0] ={...user.rows[0],isQA:true}
+            }
+            if(user.rows.find(e=> e.roleid ==9)){
+                user.rows[0] ={...user.rows[0],isQAcondinater:true}
             }
             req.session.user =user.rows[0]
             res.json({isSucess:true})
