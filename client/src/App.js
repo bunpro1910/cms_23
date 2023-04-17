@@ -8,7 +8,7 @@ import AddTopic from './components/Staff/Addtopic';
 import Topic from './components/Topic';
 import Home from './components/Home';
 import Addcategory from './components/Staff/Addcategory';
-import Addidea from './components/Addidea';
+import Addidea from './components/Staff/Addidea';
 import ManagertopicAdmin from './components/Admin/Managertopic'
 import Managertopic from './components/Staff/Managertopic';
 import Managercate from './components/Staff/Managercategory';
@@ -26,7 +26,7 @@ import TermandCondition from './components/TermandCondition'
 import Managerole from './components/Staff/Managerole'
 import Addrole from './components/Staff/Addrole'
 import Manageruser from './components/Admin/Manageuser'
-import { ToastContainer,Flip } from 'react-toastify'
+import { ToastContainer, Flip } from 'react-toastify'
 import CreateAccount from './components/Admin/CreateAccount'
 import Profile from './components/Staff/Profile'
 import 'react-quill/dist/quill.snow.css';
@@ -35,14 +35,14 @@ import socket from './model/socket'
 
 function App() {
   let getuser = () => axios.get("/api/authentication").then((res) => res.data)
-  const { isLoading, error, data, isFetching, refetch ,isFetched  } = useQuery(`authentication`, getuser)
-  const [user,setuser]= useState('')
+  const { isLoading, error, data, isFetching, refetch, isFetched } = useQuery(`authentication`, getuser)
+  const [user, setuser] = useState('')
   useEffect(() => {
     setuser(data)
     socket.on('authentication', (args) => {
-      refetch().then(res=>{setuser(res?.data)})
+      refetch().then(res => { setuser(res?.data) })
     })
-  
+
   })
   if (isLoading) { return <></> }
   return (
@@ -59,7 +59,7 @@ function App() {
 
             {data.user != "not found" ?
               <>
-                   <Route path='profile' element={<Profile />} />
+                <Route path='profile' element={<Profile />} />
                 <Route path='addidea' element={<Addidea />} />
                 <Route path='topic' element={<Topic />} />
                 <Route path='idea/:id/:page?' element={<Idea />} />
@@ -68,8 +68,8 @@ function App() {
           {data.user != "not found" ? data.user.isAdmin || data.user.isQA ?
             <>
 
-              <Route path="/manager" element={<Navbar user={user}/>}>
-         
+              <Route path="/manager" element={<Navbar user={user} />}>
+
                 <Route index element={<Index />} />
                 <Route path='addcate' element={<Addcate />} />
                 <Route path='addtopic' element={<AddTopic />} />
@@ -91,8 +91,8 @@ function App() {
             : "" : ""}
         </Routes>
       </BrowserRouter>
-      <ToastContainer autoClose={1000} theme="dark" transition={Flip}/>
-      <Footer/>
+      <ToastContainer autoClose={1000} theme="dark" transition={Flip} />
+      <Footer />
     </div>
   );
 }

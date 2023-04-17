@@ -14,7 +14,6 @@ function Login() {
     const [showdelete, setshowdelete] = useState(false)
     const [showdetail, setshowdetail] = useState(false)
     const [category, setcategory] = useState('')
-    const socketRef = useRef()
     const navigate = useNavigate()
     let getuser = () => axios.get(`/api/category`).then((res) => res.data)
     const { isLoading, error, data, isFetching, refetch } = useQuery(['category'], getuser)
