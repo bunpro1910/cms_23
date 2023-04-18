@@ -51,7 +51,7 @@ function Login() {
     console.log(data)
     return (
         <>
-            <ReactNotifications />
+
             <Confirmdelete account={account} showdelete={showdelete} setShowdelete={setShowdelete} />
             <Detailuser account={account} showdetail={showdetail} setShowdetail={setShowdetail} />
             <Viewrole account={account} showviewrole={showviewrole} setShowviewrole={setShowviewrole} />

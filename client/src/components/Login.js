@@ -33,13 +33,13 @@ function Login() {
       <div className='account-wrap w-full xl:w-2/5 md:w-3/5 sm:w-full'>
         <button className='sample-account' type="" onClick={(e) => { setusername('bun123@gmail.com'); setpassword("123") }}>Admin Account</button>
         <button className='sample-account' type="" onClick={(e) => { setusername('gokuhieu20@gmail.com'); setpassword("123") }}>QA Account</button>
-        <button className='sample-account' type="" onClick={(e) => { setusername('bun456@gmail.com'); setpassword("456") }}>Staff</button>
-        <button className='sample-account' type="" onClick={(e) => { setusername('gokuhieu@gmail.com'); setpassword("123") }}>QA condinater</button>
+        <button className='sample-account' type="" onClick={(e) => { setusername('vothanhnamphuong20@gmail.com'); setpassword("123") }}>Staff</button>
+        <button className='sample-account' type="" onClick={(e) => { setusername('huutien@gmail.com'); setpassword("123") }}>QA condinater</button>
       </div>
       <div className="login xl:w-3/5 sm:w-full md:w-4/5" >
         <form className='form-manager' onSubmit={submit_handle}>
           <div className='input flex flex-wrap justify-between'>
-            <label className='w-full text-2xl font-semibold flex flex-row'  ><RiAdminFill className='mr-2'/>User Name</label>
+            <label className='w-full text-2xl font-semibold flex flex-row'  ><RiAdminFill className='mr-2' />User Name</label>
             <input className='form-control' type='text' onChange={(e) => { setusername(e.target.value) }} value={username}></input>
           </div>
           <div className='input'>
