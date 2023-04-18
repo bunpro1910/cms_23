@@ -9,7 +9,7 @@ let topic = async (req,res)=>{
 
     
     let role = await connect(query)
-
+    console.log(role)
     if(role.rowCount>0){
         res.json({role:role.rows,quantity:role.rowCount})
     }else{
