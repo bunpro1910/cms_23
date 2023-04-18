@@ -64,7 +64,7 @@ function Login() {
             <input type='text' className='form-control' onChange={(e) => { department.name = e.target.value; setdepartment({ ...department }) }} value={department.name}></input>
           </div>
           <div className='btn-submit-wrap'>
-            <button type='submit' className='btn btn-primary'>{location.state.department.id?"Update":"Add"} department</button>
+            <button type='submit' className='btn btn-primary'>{location.state?.department.id?"Update":"Add"} department</button>
           </div>
         </form>
       </div>
