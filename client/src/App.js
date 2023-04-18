@@ -91,8 +91,8 @@ function App() {
             : "" : ""}
         </Routes>
       </BrowserRouter>
-      <ToastContainer autoClose={1000} theme="dark" transition={Flip} />
-      <Footer />
+      <ToastContainer pauseOnFocusLoss autoClose={1000} theme="dark" transition={Flip}/>
+      <Footer/>
     </div>
   );
 }

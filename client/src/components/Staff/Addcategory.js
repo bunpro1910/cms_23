@@ -34,10 +34,10 @@ function Login(props) {
       })
       if (location.state?.update) {
         toast.success("update sucessfully")
-        navigate('../cate')
+        navigate('../category')
       } else {
         toast.success('add sucessfully')
-        navigate('../cate')
+        navigate('../category')
       }
 
      

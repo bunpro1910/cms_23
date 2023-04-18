@@ -42,7 +42,7 @@ function Login() {
 
     return (
         <>
-         
+
             <Confirmdelete department={department} showdelete={showdelete} setshowdelete={setshowdelete} />
             <Detaildepartment department={department} showdetail={showdetail} setshowdetail={setshowdetail} />
             <div className='container'>
