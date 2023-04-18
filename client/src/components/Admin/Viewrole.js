@@ -64,6 +64,7 @@ function View(props) {
     }, [])
 
     if (isLoading) return <>...loading</>
+    if (isloadingrole ) return <>...loading</>
     if (!props.showviewrole) {
         return
     }
@@ -85,7 +86,7 @@ function View(props) {
                     >
                         Role of User ID {data.role[0].username} <br />
                         <div className='row' style={{ marginLeft: 20 + "px" }}>
-                            {data.role.map((item, i) => {
+                            {!data?"loading":data.role.map((item, i) => {
                                 return (<>
                                     <div className='wrap-role'>
                                         <div className='role'>
