@@ -94,10 +94,6 @@ function Navbar({ user }) {
                     <Link to='/profile' className='Link'>{user.user.fullname} </Link></li>
                   <li className="navbar-item"><button onClick={async (e) => {
                     let result = await axios.get('/api/logout')
-<<<<<<< HEAD
-
-=======
->>>>>>> 9355842811577360dfca69d0d0432d042cd8263e
                     if (result.data.isSuccess) {
                       toast.success(`Logout Successfully`)
                     } else {

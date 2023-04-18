@@ -91,13 +91,8 @@ function App() {
             : "" : ""}
         </Routes>
       </BrowserRouter>
-<<<<<<< HEAD
       <ToastContainer pauseOnFocusLoss autoClose={1000} theme="dark" transition={Flip}/>
       <Footer/>
-=======
-      <ToastContainer autoClose={1000} theme="dark" transition={Flip} />
-      <Footer />
->>>>>>> 9355842811577360dfca69d0d0432d042cd8263e
     </div>
   );
 }
