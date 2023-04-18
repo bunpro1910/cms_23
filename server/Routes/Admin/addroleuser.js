@@ -14,7 +14,6 @@ let topic = async (req, res) => {
     let query = `insert into public.roledetail (account_id,roleid) select '${req.body.userid}',${req.body.id} where not EXISTS (select * from public.roledetail where account_id = '${req.body.userid}' and roleid = ${req.body.id} )     `
    
     let result = await connect(query)
-    console.log(result)
     if(result.rowCount>0){
         res.json({ isSuccess:true })
         global.io.emit('reloaduserrole', { body: true })

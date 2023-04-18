@@ -10,6 +10,7 @@ import 'react-notifications-component/dist/theme.css'
 import Confirmdelete from './Confirmdeleteuser'
 import Detailuser from './Detailuser'
 import Viewrole from './Viewrole'
+import socket from '../../model/socket'
 function Login() {
     const [showdelete, setShowdelete] = useState(false)
     const [showdetail, setShowdetail] = useState(false)
@@ -40,18 +41,18 @@ function Login() {
     }
 
     useEffect(() => {
-        socketRef.current = io.connect(`http://localhost:3001/`)
 
-        socketRef.current.on('reloaduser', (args) => {
+
+        socket.on('reloaduser', (args) => {
             refetch()
         })
     }, [])
 
     if (isLoading) return <>...loading</>
-    console.log(data)
+ 
     return (
         <>
-
+            <ReactNotifications />
             <Confirmdelete account={account} showdelete={showdelete} setShowdelete={setShowdelete} />
             <Detailuser account={account} showdetail={showdetail} setShowdetail={setShowdetail} />
             <Viewrole account={account} showviewrole={showviewrole} setShowviewrole={setShowviewrole} />

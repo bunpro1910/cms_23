@@ -10,6 +10,7 @@ import Notification from '../Notification'
 import { ReactNotifications, Store } from 'react-notifications-component'
 import 'react-notifications-component/dist/theme.css'
 import Confirmdelete from './Confirmdelete'
+import socket from '../../model/socket'
 import Detailtopic from './Detailtopic'
 function Login() {
     const [showdelete,setshowdelete] = useState(false)
@@ -32,13 +33,13 @@ function Login() {
         navigate('../addtopic',{state:{update:1,topic:topic}})
     }
     useEffect(() => {
-        socketRef.current = io.connect(`http://localhost:3001/`)
-        socketRef.current.on('reloadtopic', (args) => {
+      
+        socket.on('reloadtopic', (args) => {
           refetch()
         })
     }, [])
     if (isLoading) return <>...loading</>
-    console.log(data)
+
     return (
         <>
             <ReactNotifications />
