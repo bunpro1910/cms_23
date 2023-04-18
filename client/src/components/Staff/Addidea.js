@@ -3,7 +3,6 @@
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import { ReactNotifications, Store } from 'react-notifications-component'
 import { useQuery } from 'react-query'
 import Formdata from 'form-data'
 import ReactQuill from 'react-quill';
@@ -37,7 +36,7 @@ function Login({ state }) {
       form.append('topicid', location.state.topicid)
       form.append('title', addidea.title)
       form.append('brief', addidea.brief)
-      if (addidea.categoryid==""){
+      if (addidea.categoryid == "") {
         toast.error("required Category ID")
         return
       }
@@ -69,7 +68,7 @@ function Login({ state }) {
   }
   return (
     <>
-      <ReactNotifications />
+  
       <div className='container'>
         <form enctype='multipart/form' className='form-manager' onSubmit={handleSubmit}>
           <div class="mb-3">
@@ -96,42 +95,33 @@ function Login({ state }) {
             <input type="file" onChange={(e) => { addidea.file = e.target.files[0]; setaddidea({ ...addidea }) }} value={addidea.file.filename} class="form-control" />
           </div>
           <div class="mb-3">
-          <label class="form-label">Text</label>
-          <ReactQuill theme="snow" value={addidea.text} modules={{
-                toolbar: [
-                  ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
-                  ['blockquote', 'code-block'],
-
-                  [{ 'header': 1 }, { 'header': 2 }],               // custom button values
-                  [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-                  [{ 'direction': 'rtl' }],                         // text direction
-
-                  [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
-                  [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-
-                  [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
-          
-                  [{ 'align': [] }],
-
-                  ['clean']      
-                ],
-              }} formats={[
-                'header',
-                'bold', 'italic', 'underline', 'strike', 'blockquote',
-                'list', 'bullet', 'indent',
-                'link', 'image','color','background','size', 'code-block'
-              ]} onChange={(e) => { addidea.text = e; setaddidea({ ...addidea }); }} 
-                
-              />
- 
-           
+            <label class="form-label">Text</label>
+            <ReactQuill theme="snow" value={addidea.text} modules={{
+              toolbar: [
+                ['bold', 'italic', 'underline', 'strike'],       
+                ['blockquote', 'code-block'],
+                [{ 'header': 1 }, { 'header': 2 }],               
+                [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                [{ 'direction': 'rtl' }],                         
+                [{ 'size': ['small', false, 'large', 'huge'] }],  
+                [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+                [{ 'color': [] }, { 'background': [] }],          
+                [{ 'align': [] }],
+                ['clean']
+              ],
+            }} formats={[
+              'header',
+              'bold', 'italic', 'underline', 'strike', 'blockquote',
+              'list', 'bullet', 'indent',
+              'link', 'image', 'color', 'background', 'size', 'code-block'
+            ]} onChange={(e) => { addidea.text = e; setaddidea({ ...addidea }); }}
+            />
           </div>
           <div class="mb-3 form-check">
             <input type="checkbox" class="form-check-input" id="exampleCheck1" onChange={(e) => { setaccept(e.target.checked) }} checked={accept} />
-            <label class="form-check-label" for="exampleCheck1" >You need accept <a className='link-default' href='/term' target="_blank"> term and conditions</a></label>
-          </div>
-
-          <button type="submit" class="btn btn-primary " disabled={!accept}>Submit</button>
+            <label class="form-check-label" >You need accept <a className='link-default' href='/term' target="_blank"> term and conditions</a></label>
+          </div>  
+          <button type="submit" class="p-2 rounded-md btn-common bg-rose-600 text-white hover:!text-black" disabled={!accept}>Submit</button>
         </form>
       </div>
 

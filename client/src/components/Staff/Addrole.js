@@ -66,7 +66,7 @@ function Login(props) {
           </div>
 
           <div className='btn-submit-wrap'>
-            <button type='submit' className='btn btn-primary'>Add Category</button>
+            <button type='submit' className='btn btn-primary'>Add Role</button>
           </div>
         </form>
 

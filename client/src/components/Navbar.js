@@ -91,11 +91,13 @@ function Navbar({ user }) {
 
                   <li className="navbar-item">
                     {localStorage.setItem('user', JSON.stringify(user.user))}
-
                     <Link to='/profile' className='Link'>{user.user.fullname} </Link></li>
                   <li className="navbar-item"><button onClick={async (e) => {
                     let result = await axios.get('/api/logout')
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9355842811577360dfca69d0d0432d042cd8263e
                     if (result.data.isSuccess) {
                       toast.success(`Logout Successfully`)
                     } else {
@@ -108,40 +110,6 @@ function Navbar({ user }) {
           </div>
         </div>
       </nav>
-      {/* <div className="navbar" ref={ref}>
-      {navbar ? <>
-        <ul className={"navbar-list "+ (navbar&&width>840?"flex flex-row":"  mr-24 ml-auto")}>
-         
-
-            <li className="navbar-item first" ><Link className='Link'>Greenwich FPT </Link></li>
-            <div className={"second "+ (navbar&&width>840?"flex flex-row":"")} ref={socketRef}>
-              <li className="navbar-item"><Link to='/home' className='Link'>Home </Link><FaHome className="icons" /></li>
-
-              {user.user?.isAdmin || user.user?.isQA ? <li className="navbar-item"><Link to='/manager' className='Link'> Dashboard </Link><MdOutlineAdminPanelSettings className="icons" /></li> : ""}
-
-              {user.user != 'not found' ? <>
-                <li className="navbar-item"><Link to='/topic' className='Link'>Topic </Link><FaUpload className="icons" /></li>
-
-                <li className="navbar-item">
-                  {localStorage.setItem('user', JSON.stringify(user.user))}
-
-                  <Link to='/login' className='Link'>{user.user.fullname} </Link></li>
-                <li className="navbar-item"><button onClick={(e) => {
-                  axios.get('/logout')
-
-                }} className='Link btn-logout'>Logout</button></li></>
-                : <li className="navbar-item"><Link to='login' className='Link'>Login </Link></li>}
-            </div>
-            </ul>
-          </> :""}
-
-
-
-        
-        <button className="nav-resposive" onClick={(e) => { navbar ? setnavbar(false) : setnavbar(true) }}><FiMenu /></button>
-      </div> */}
-
-
       <Outlet />
     </>
   );

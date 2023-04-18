@@ -13,9 +13,6 @@ function Home() {
   }, [showview])
   return (
     <div className='mt-4 w-full relative'>
-
-
-
       <div className=''>
         <div className=' w-full bg-black opacity-50 absolute top-0 bottom-0 z-2' ></div>
         <img src="https://secretldn.com/wp-content/uploads/2022/10/shutterstock_742274224-2.jpg" alt="Placeholder Image" className="w-full  " />
@@ -24,11 +21,6 @@ function Home() {
           <Link to='/topic' className="p-3 bg-rose-600 rounded-2xl sm:text-2xl xl:text-3xl hover:bg-rose-700 hover:no-underline hover:text-white transition-all duration-500">View Topic</Link>
         </div>
       </div>
-
-
-
-
-
     </div>
   );
 }
