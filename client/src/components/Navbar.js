@@ -13,7 +13,7 @@ import { toast } from 'react-toastify'
 
 import { useQuery } from 'react-query'
 
-function Navbar({user}) {
+function Navbar({ user }) {
 
 
 
@@ -22,15 +22,15 @@ function Navbar({user}) {
   useEffect(() => {
 
   }, [user])
- 
-  if(!user){
+
+  if (!user) {
     return <>loadding</>
   }
   return (
     <>
 
 
-      <nav className={"w-full bg-zinc-800 shadow " }>
+      <nav className={"w-full bg-zinc-800 shadow "}>
         <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
           <div>
             <div className="flex items-center justify-between py-3 md:py-5 md:block">
@@ -93,10 +93,10 @@ function Navbar({user}) {
                     {localStorage.setItem('user', JSON.stringify(user.user))}
 
                     <Link to='/profile' className='Link'>{user.user.fullname} </Link></li>
-                  <li className="navbar-item"><button onClick={ async(e) => {
+                  <li className="navbar-item"><button onClick={async (e) => {
                     let result = await axios.get('/api/logout')
-                
-                    if(result.data.isSuccess) {
+
+                    if (result.data.isSuccess) {
                       toast.success(`Logout Successfully`)
                     } else {
                       toast.error(`Logout failed`)
