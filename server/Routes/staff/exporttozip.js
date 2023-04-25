@@ -58,8 +58,13 @@ const connect = require('../../database/connect')
         worksheet.cell(i+2,7).string(`${totallike}`).style(style)
         worksheet.cell(i+2,8).string(`${totalview}`).style(style)
         worksheet.cell(i+2,9).string(`${totaldislike}`).style(style)
-        let file = fs.readFileSync(__dirname+`/../..${item.filepath}`)
-        zip.file(item.filepath.split("\\")[item.filepath.split("\\").length - 1],file, {binary: true } )
+        try{
+          let file = fs.readFileSync(__dirname+`/../..${item.filepath}`)
+          zip.file(item.filepath.split("\\")[item.filepath.split("\\").length - 1],file, {binary: true } )
+        }catch(e){
+          console.log(e)
+        }
+      
     })
    }
 

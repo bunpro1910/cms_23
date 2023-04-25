@@ -18,8 +18,7 @@ function Login() {
     })
   },[])
   if(isLoading){return<>... loading</>}
-
-  console.log(data)
+  
   if(data.quantity == 0){
     return(
       <div className='topic-page'>

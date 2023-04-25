@@ -65,7 +65,6 @@ function View(props) {
     if (!props.showviewrole) {
         return
     }
-
     return (
         <>
 

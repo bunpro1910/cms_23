@@ -21,10 +21,6 @@ let topic = async (req, res) => {
         res.json({ isSuccess:false })
     }
 
-
-
-
-
 }
 
 module.exports = topic
